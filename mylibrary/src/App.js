@@ -21,7 +21,7 @@ import BooksAvailable from './components/Admin/BooksAvailable';
 import BorrowBooks from './components/STUDENT/BorrowBooks';
 import Books from './components/Student/books'
 import LibrarianAddBooks from './components/LIBRARIAN/LibrarianAddBooks';
-
+import AddNewBooks from './components/LIBRARIAN/AddNewBooks';
 
 
 
@@ -32,6 +32,7 @@ function App()
   return (
     <>
       <Routes>
+      <Route path='/addnewbooks' element={<AddNewBooks/>} /> 
       <Route path='/books' element={<Books/>} /> 
       <Route path='/librarianaddbooks' element={<LibrarianAddBooks/>} /> 
       <Route path='/studentbooks' element={<BorrowBooks/>} /> 

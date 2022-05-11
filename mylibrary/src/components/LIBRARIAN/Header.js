@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-
+import { Link } from 'react-router-dom'
 export default class Header extends Component {
   render() {
     return (
@@ -121,7 +121,11 @@ export default class Header extends Component {
             </li>
             <li className="nav-item">
               <a className="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button">
-                <i className="fas fa-th-large" />
+              <p>
+                <Link to='/'>
+                <i class="fas fa-solid fa-skull-crossbones">Logout</i>
+                </Link>
+              </p>
               </a>
             </li>
           </ul>
