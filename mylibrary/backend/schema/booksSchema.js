@@ -15,6 +15,14 @@ var schema = new db ({
       type : 'String' ,
       require : 'true'
    },
+   total_books:{
+      type : 'number' ,
+      require : 'true'
+   },
+   available_books:{
+      type : 'number',
+      require:'true'
+   },
    isblocked: {
       type:'Boolean',
       require:'true',

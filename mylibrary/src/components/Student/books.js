@@ -30,17 +30,19 @@ export default function Books(){
         })
     },[])
 
-    function handleBorrowBook(bookid,bookname,author){
+    function handleBorrowBook(bookid,bookname,author,available_books){
         const obj ={
+            email:email,
             bookid:bookid,
             bookname:bookname,
-            author:author
+            author:author,
+            available_books:available_books
         }
         axios.post("http://localhost:4000/borrowbooks",obj)
         .then(response=>{
             alert(response.data.borrowmsg)
         })
-        
+        window.location.href='/studentbooks'
     }
     
     
@@ -61,17 +63,18 @@ export default function Books(){
                     {/* book details are here */}
                     <button onClick={hideme} className="btn btn-outline-success d-inline-block ml-auto" id="show-detail" type="button" aria-expanded="false" aria-label="Toggle navigation">
                         <i className="fas fa-align-justify"></i>
-                        <a  >Show-Hide </a>
+                        <a></a>
                     </button>
                     
                     <div className="tablediv table-responsive" id="book-info">
-                        <h5 className="heading">Books Available</h5>
+                        {/* <h5 className="heading">Books Available</h5> */}
                         <table className="table table-bordered">
                         <thead>
                             <tr>
                                 <th className="col-xs-1 text-center">Sr.no</th>
                                 <th className="col-xs-1 text-center">BookName</th>
                                 <th className="col-xs-1 text-center">Author</th>
+                                <th className="col-xs-1 text-center">Available</th>
                                 <th className="col-xs-1 text-center">Borrow</th>
                             </tr>
                             </thead>
@@ -83,7 +86,8 @@ export default function Books(){
                                         <td className="col-xs-1 text-center">{index+1}</td>
                                         <td className="col-xs-1 text-center" > {val.bookname}</td>
                                         <td className="col-xs-1 text-center">{val.author}</td>
-                                        <td className="col-xs-1 text-center" style={{color: "#8b1919"}} ><FaCartArrowDown style={{cursor: "pointer"}} onClick={()=>{handleBorrowBook(val.bookid,val.bookname,val.author)}} /></td>
+                                        <td className="col-xs-1 text-center">{val.available_books}</td>
+                                        <td className="col-xs-1 text-center" style={{color: "#8b1919"}} ><FaCartArrowDown style={{cursor: "pointer"}} onClick={()=>{handleBorrowBook(val.bookid,val.bookname,val.author,val.available_books)}} /></td>
                                     </tr>
                                 );
                                 })
@@ -97,40 +101,6 @@ export default function Books(){
                     <div style={{color:'red'}}>
                                     {msg}
                     </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                    {/* <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                    <div className="line"></div>
-                    <h2>Lorem Ipsum Dolor</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                    <div className="line"></div>
-                    <h2>Lorem Ipsum Dolor</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                    <div className="line"></div>
-                    <h3>Lorem Ipsum Dolor</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p> */}
                 </div>
             </div>
         </div>

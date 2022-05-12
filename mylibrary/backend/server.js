@@ -4,12 +4,19 @@ const cookieParser = require('cookie-parser')
 const app = express();
 const port = 4000;
 const secretKey = 'mynameiskumaraniketfromlucknow';
+const { response } = require("express");
+const dotenv = require("dotenv");
+dotenv.config({ path: "./.env" });
 
+const sendmail = require('./HandleMail')
+  
 var cors = require('cors');
 app.use(cors());
 app.use(express.json());
 app.use(cookieParser());
 
+
+// sendmail("kum.testo7@gmail.com", "Student", "kumar aniket", "random_password")
 
 const mongoose = require("mongoose");
 mongoose.connect("mongodb://localhost:27017/testo7",{useNewUrlParser:true})
@@ -18,7 +25,9 @@ mongoose.connect("mongodb://localhost:27017/testo7",{useNewUrlParser:true})
 
 const Signup = require('../backend/schema/signup')
 const registerbooks = require('../backend/schema/booksSchema')
-const Borrowedbook = require('../backend/schema/borrowBook')
+const Borrowedbook = require('../backend/schema/borrowBook');
+const e = require("express");
+
 
 
 
@@ -68,8 +77,8 @@ app.post('/signup', async(req,res)=>{
 
 app.post("/signin",async(req,res)=> {
       const email = req.body.email;
-      const pass = req.body.password;
-      const user = await Signup.findOne({email , pass,isblocked:false})
+      const password = req.body.password;
+      const user = await Signup.findOne({email ,password,isblocked:false})
 
       if(!user || user === ''){
         console.log("Email or Password not found in database")
@@ -154,11 +163,13 @@ app.post('/registerbooks', async(req,res)=>{
   }
 
   var obj = {
-    bookid:generateID(),
-    bookname:req.body.bookname,
-    author:req.body.author
+    "bookid":generateID(),
+    "bookname":req.body.bookname,
+    "author":req.body.author,
+    "total_books":+(req.body.total_books),
+    "available_books":+(req.body.total_books)
   }
-  // console.log(obj)
+  console.log(obj)
   await registerbooks.insertMany(obj)
   .catch(e=>{
     // res.json({msg:"something went wrong"})
@@ -221,17 +232,29 @@ app.post('/update-users-data',async(req,res)=>{
 })
 
 app.post("/borrowbooks" , async(req,res)=>{
+  var email = req.body.email
+  var available_books = (+(req.body.available_books) - 1)
   const obj = {
+    email:email,
     bookid:req.body.bookid,
     bookname:req.body.bookname,
     author:req.body.author
   }
-  await Borrowedbook.insertMany(obj)
-  .then(resp=>{
-    res.json({borrowmsg:"successfully borrowed"})
-  })
-})
+  var exist = await Borrowedbook.findOne({bookid:obj.bookid,email:email},{ _id:0 , bookname:0,author:0,date:0,isblocked:0,__v:0})
+  if( !exist ){
+      await Borrowedbook.insertMany(obj)  
+      .then(resp=>{
+        res.json({borrowmsg:"successfully borrowed"})
+      })
+      await registerbooks.updateOne({bookid:obj.bookid,isblocked:false},{$set:{available_books:available_books}})
+      .then(response=>{console.log("list updated")})
+  }else {
+    res.json({borrowmsg:"you have already borrowed"})
+  } 
 
+  
+})
+ 
 app.get('/getAlluser', async(req,res)=>{
   const arr =await Signup.find({isblocked:false},{name:0,email:0,contact:0,password:0,role:0,_id:0,__v:0,isblocked:0})
   // console.log(arr.length);
@@ -253,8 +276,12 @@ app.get('/getAllBooks', async(req,res)=>{
   const arr =await registerbooks.find({isblocked:false},{bookname:0,author:0,_id:0,__v:0,isblocked:0})
   res.json({books:arr.length})
 })
+ 
+app.post('/totalborrowed',(req,res)=>{
+  console.log(req.body.email) 
+})
 
 app.listen(port, ()=>{
   
     console.log(`listening to port no ${port}`);
-});
+}); 

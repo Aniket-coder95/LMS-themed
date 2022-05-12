@@ -3,6 +3,10 @@ var mongoose = require('mongoose') ;
 
 var db = mongoose.Schema;
 var schema = new db ({
+   email : {
+      type : 'String' ,
+      require : 'true'
+   },
    bookid : {
       type : 'String' ,
       require : 'true'
@@ -15,6 +19,16 @@ var schema = new db ({
       type : 'String' ,
       require : 'true'
    },
+   // isborrowed:{
+   //    type:'Boolean',
+   //    require:'true',
+   //    default:false 
+   // },
+   // total_borrowed:{
+   //    type:"Number",
+   //    require:"true",
+   //    default:0 
+   // },
    date: {
     type:'String',
     required:'true',

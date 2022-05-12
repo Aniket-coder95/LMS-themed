@@ -6,15 +6,19 @@ export default function AddNewBooks(){
     const [bookname , setBookname] = useState('');
     const [authorname , setAuthorname] = useState('');
     const [bookerrmsg , setBookerrmsg]=useState('');
+    const [total_books , setTotal_books]=useState();
 
     function addbookFun(){
-        if(!bookname || !authorname){
+                    <input type="text" placeholder="Enter " className="form-control" value={total_books} onChange={(e)=>setTotal_books(e.target.value)} />
+        if(!bookname || !authorname || !total_books){
             alert("Enter both  value bookname and author name then add!")
         }else{
             const obj ={
                 bookname:bookname,
-                author:authorname
+                author:authorname,
+                total_books:total_books
             }
+            console.log(obj);
             axios.post('http://localhost:4000/registerbooks',obj)
             .catch(e=> {
                 if(e)throw e;
@@ -30,26 +34,32 @@ export default function AddNewBooks(){
     }
     return(
         <>
-        <div className="addNewBooks" id="addNewBooks">
-            <h3 className="heading">Add Book Here</h3> 
-            <div className="addBooks">
+        <div className='wrapper'>
+            <div className="addNewBooks" id="addNewBooks">
+                <h3 className="heading">Add Book Here</h3> 
+                <div className="addBooks">
 
-                <div className="form-group">
-                    <label htmlFor="form3Example4cg">Book Name</label>
-                    <input type="text" placeholder="Enter book name" className="form-control" value={bookname} onChange={(e)=>setBookname(e.target.value)} />
+                    <div className="form-group">
+                        <label htmlFor="form3Example4cg">Book Name</label>
+                        <input type="text" placeholder="Enter book name" className="form-control" value={bookname} onChange={(e)=>setBookname(e.target.value)} />
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="form3Example4cg">Author</label>
+                        <input type="text" placeholder="Enter author name" className="form-control" value={authorname} onChange={(e)=>setAuthorname(e.target.value)} />
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="form3Example4cg">Total_Books</label>
+                        <input type="number" placeholder="Enter total books" className="form-control" value={total_books} onChange={(e)=>setTotal_books(e.target.value)} />
+                    </div>
+                    <div className="form-group">
+                        <button className="btn btn-outline-success" onClick={addbookFun}>Add</button>
+                    </div>
+                    <div>
+                        {bookerrmsg}
+                    </div>
                 </div>
-                <div className="form-group">
-                    <label htmlFor="form3Example4cg">Author</label>
-                    <input type="text" placeholder="Enter author name" className="form-control" value={authorname} onChange={(e)=>setAuthorname(e.target.value)} />
-                </div>
-                <div className="form-group">
-                    <button className="btn btn-outline-success" onClick={addbookFun}>Add</button>
-                </div>
-                <div>
-                    {bookerrmsg}
-                </div>
+                            
             </div>
-                        
         </div>
         </>
     )

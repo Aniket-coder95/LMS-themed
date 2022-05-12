@@ -1,9 +1,28 @@
-import React, { Component } from 'react'
+import React from 'react'
 import GetuserDetails from '../GetuserDetails';
 import { useLocation } from 'react-router-dom';
+import { useEffect } from 'react';
+import { useState } from 'react';
+import axios from 'axios';
 
 export default function Dashboard() {
   const getdata = useLocation();
+  const [email , setEmail] = useState('')
+  
+
+  useEffect(()=>{
+    setEmail(getdata.state)
+    const obj={email:email}
+
+    axios.post('http://localhost:4000/totalborrowed',obj)
+    .then(response => {
+
+    })
+    .catch(e=>{
+
+    })
+
+  })
 
     return (
       <div>
