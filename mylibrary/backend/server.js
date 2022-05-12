@@ -6,8 +6,8 @@ const port = 4000;
 const secretKey = 'mynameiskumaraniketfromlucknow';
 const { response } = require("express");
 const dotenv = require("dotenv");
-dotenv.config({ path: "./.env" });
-
+dotenv.config({ path: "./credential.env" });
+ 
 const sendmail = require('./HandleMail')
 const randPass = require('./Generatepassword')
   
@@ -41,24 +41,25 @@ app.post('/signup', async(req,res)=>{
         random_studentid += charset.charAt(Math.floor(Math.random() * n));
       }
       return random_studentid;
-    }
+    } 
     const password = randPass()
     var obj =[
         {
-          "studentid":generateID(),
-          "name": req.body.name,
-          "email": req.body.email,
-          "contact": req.body.contact,
-          "password": password,
-          "role": req.body.role
+          studentid:generateID(),
+          name: req.body.name,
+          email: req.body.email,
+          contact: req.body.contact,
+          password: password, 
+          role: req.body.role
           
         }];
-    await Signup.insertMany(obj,function(err,res){
-    if(err)throw err;
-        console.log("signed-up"); 
-        sendmail(req.body.email,req.body.role,req.body.name,password)
+        console.log(req.body.email,req.body.role,req.body.name,password)
+      await Signup.insertMany(obj,function(err,res){
+      if(err)throw err;
+          console.log("signed-up"); 
+          sendmail(req.body.email,req.body.role,req.body.name,password)
 
-    })
+      })
   
 })
 

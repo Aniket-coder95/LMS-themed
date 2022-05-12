@@ -16,8 +16,8 @@ var schema = new db ({
       require : 'true'
    },
    contact : {
-      type : 'String' ,
-      require : 'true'
+      type : 'String' 
+      // require : 'true'
    },
    password : {
       type : 'String' ,

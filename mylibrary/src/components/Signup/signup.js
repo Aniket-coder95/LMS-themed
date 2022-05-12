@@ -9,11 +9,8 @@ export default function Signup(){
     const [Name ,setName] = useState('')
     const [Email ,setEmail] = useState('')
     const [Role ,setRole] = useState('')
-    const [PasswordOne ,setPasswordOne] = useState('')
-    const [PasswordTwo ,setPasswordTwo] = useState('')
     const [Contact ,setContact] = useState('')
     const [emailError, setEmailError] = useState('');
-    const [passwordError, setPasswordError] = useState('');
     const [contactError, setContactError] = useState('');
 
     
@@ -39,11 +36,12 @@ export default function Signup(){
             axios.post("http://localhost:4000/signup",regdata)
             .then(Response =>{
                 console.log(Response);
+                alert("Loging credencials send to your mail")
             })
             .catch(error => {
                 console.log(error)
             })
-            alert("Loging credencials sent to your mail")
+            
             window.location.href = '/';
         }
     }
@@ -80,7 +78,7 @@ export default function Signup(){
         
 
                                 <div className="form-outline mb-4">
-                                <label className="form-label" >Contact</label>
+                                <label className="form-label" >Contact*</label>
                                 <input type="text" id="form3Example3cg" className="form-control form-control-lg" value={Contact} onChange={(e)=> setContact(e.target.value)}/>
                                     <span style={{
                                         // border:'outset',
