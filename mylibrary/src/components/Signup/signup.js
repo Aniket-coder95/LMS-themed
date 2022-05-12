@@ -21,10 +21,10 @@ export default function Signup(){
             return setContactError("Add a valid contact no")
         }
         if (!regEmail.test(Email)) {
-            setEmailError('Enter valid Email!');
+            return setEmailError('Enter valid Email!');
         }
         if(!Name || !Email || !Contact || !Role){
-            window.alert("Fill every details!");
+            return alert("Fill every details!");
         }else{
             // send to backend here
             const regdata = {

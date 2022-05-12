@@ -95,7 +95,7 @@ export default function Dashboard () {
           </div>
           <div className="row">
             <section className="col-lg-7 connectedSortable">
-              <div className="card">
+              {/* <div className="card">
                 <div className="card-header">
                   <h3 className="card-title">
                     <i className="fas fa-chart-pie mr-1" />
@@ -115,7 +115,7 @@ export default function Dashboard () {
                     <GetuserDetails email={getdata.state}/>
                   </div>
                 </div>
-              </div>
+              </div> */}
               
               
             </section>

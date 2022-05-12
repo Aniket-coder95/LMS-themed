@@ -39,8 +39,6 @@ export default function GetuserDetails(props){
             if(e)throw e;
         })
 
-
-
     })
         
 

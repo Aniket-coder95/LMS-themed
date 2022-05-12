@@ -3,27 +3,43 @@ import React, { Component } from 'react'
 import { Link } from "react-router-dom";
 import { useLocation } from 'react-router-dom'
 
+
 export default function Menu () {
   const data = useLocation();
-  // console.log(data.pathname);
+  const name = data.state[2];
+  const role = data.state[1];
   const email =data.state;
-  // alert()
+  // alert(data.state[2])
     return (
       <div>
           <aside className="main-sidebar sidebar-dark-primary elevation-4">
-      <a href="index3.html" className="brand-link">
-        <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" className="brand-image img-circle elevation-3" style={{opacity: '.8'}} />
-        <span className="brand-text font-weight-light">Admin</span>
-      </a>
+        {/* <a  className="brand-link">
+          <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" className="brand-image img-circle elevation-3" style={{opacity: '.8'}} />
+          <span className="brand-text font-weight-light">Admin</span>
+          <a className="brand-text font-weight-light">Admin</a>
+        </a> */}
       <div className="sidebar">
+        <div className="user-panel mt-3 pb-3 mb-3 d-flex">
+          <div className="image">
+            <img src="dist/img/AdminLTELogo.png" className="img-circle elevation-2" alt="User Image" />
+          </div>
+          <div className="info">
+            <a className="d-block">{email}</a>
+            <div className="display-7">
+              <a >{role}</a>
+            </div>
+          </div>
+         
+        </div>
         <div className="user-panel mt-3 pb-3 mb-3 d-flex">
           <div className="image">
             <img src="dist/img/user2-160x160.jpg" className="img-circle elevation-2" alt="User Image" />
           </div>
           <div className="info">
-            <a href="#" className="d-block">{email}</a>
+            <a className="d-block">{name}</a>
           </div>
         </div>
+        
         {/* <div className="form-inline">
           <div className="input-group" data-widget="sidebar-search">
             <input className="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search" />
@@ -94,7 +110,7 @@ export default function Menu () {
                 </Link>
             </li>
            
-           <li className="nav-header">LABELS</li>
+           {/* <li className="nav-header">LABELS</li>
             <li className="nav-item">
               <a href="#" className="nav-link">
                 <i className="nav-icon far fa-circle text-danger" />
@@ -112,7 +128,7 @@ export default function Menu () {
                 <i className="nav-icon far fa-circle text-info" />
                 <p>Informational</p>
               </a>
-            </li>
+            </li> */}
           </ul>
                 
           

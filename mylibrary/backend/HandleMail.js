@@ -21,7 +21,7 @@ const passwordMailer = async (email, role, name, random_password) => {
     to: email,
     subject: "Login credentials ",
     html: `Hey <strong>${name}</strong> we are very garteful for you choosing us.
-            <p>Your userid is your email and your password is: <strong>"${random_password}"</strong>,we recommend you to reset it afterwards </p>
+            <p>Your <strong>Userid</strong> is your <strong>Email</strong> and your password is: <strong>"${random_password}"</strong>,we recommend you to reset it afterwards </p>
             <p>And We are very delighted to let you know that you are registered with us as <strong>${role}</strong>.</p>
             <b> THANK YOU FOR YOUR CONSIDERASION </b>
             ` 

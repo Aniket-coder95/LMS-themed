@@ -17,6 +17,7 @@ import {useNavigate} from 'react-router-dom'
     const navigate = useNavigate();
     let role  = '';
     let msg = '';
+    let name = '';
     
 
     
@@ -45,19 +46,20 @@ import {useNavigate} from 'react-router-dom'
             .then(Response =>{
                 msg = Response.data.msg;
                 role = Response.data.role;
+                name = Response.data.name;
                 if(msg){
                     console.log(msg)
                 }
-
+                // console.log(name)
                 // console.log(Response.data.cookie)
                 window.localStorage.setItem('accessToken',Response.data.token);
                 if(role === 'Librarian'){
-                    navigate('/librariandashboard' ,{state:email});
+                    navigate('/librariandashboard' ,{state:[email,role,name]});
                     // <Navigate to='/librariandashboard'  />
                 }else if(role === 'Student'){
-                    navigate('/studentdashboard',{state:email});
+                    navigate('/studentdashboard',{state:[email,role,name]});
                 }else if(role === 'Admin'){
-                    navigate('/admindashboard',{state:email});
+                    navigate('/admindashboard',{state:[email,role,name]});
                 }else{
                     window.alert(msg)
                 }

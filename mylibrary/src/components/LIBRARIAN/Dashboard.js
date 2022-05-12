@@ -8,9 +8,9 @@ export default function Dashboard () {
   const getdata = useLocation();
     return (
       <div className="content-wrapper">
-          <section className="content">
+          {/* <section className="content">
             <GetuserDetails email={getdata.state}/>
-          </section>
+          </section> */}
           <section className="content">
             <AddNewBooks />
           </section>

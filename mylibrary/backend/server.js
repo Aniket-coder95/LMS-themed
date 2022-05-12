@@ -69,8 +69,8 @@ app.post("/signin",async(req,res)=> {
       const password = req.body.password;
       const user = await Signup.findOne({email ,password,isblocked:false})
 
-      if(!user || user === ''){
-        console.log("Email or Password not found in database")
+      if(!user){
+        // console.log("Email or Password not found in database")
         res.json({ msg : "Email or Password not found in database"})
       }else{
         const name = user.name;

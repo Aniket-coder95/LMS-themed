@@ -62,27 +62,11 @@ export default function Dashboard() {
                     </div>
                   </div>
                 </div>
-
-              </div>
-              <div className="row">
-                <div className="col-md-12">
-                  <div className="card">
-                    <div className="card-header">
-                      <h5 className="card-title">My Detail</h5>
-                      <div className="card-tools">
-                        <button type="button" className="btn btn-tool" data-card-widget="collapse">
-                          <i className="fas fa-minus" />
-                        </button>
-                      </div>
-                    </div>
-                    <div className="card-body">
-                      <GetuserDetails email={getdata.state}/>
-                    </div>
-                    
-                    
+                  <div className='row'>
+                  add here
                   </div>
-                </div>
               </div>
+              
             </div>
           </section>
       </div>
