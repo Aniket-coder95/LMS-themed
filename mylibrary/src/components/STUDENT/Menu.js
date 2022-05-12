@@ -6,14 +6,14 @@ export default function Menu() {
   // console.log(data.pathname);
   const name = data.state[2];
   const role = data.state[1];
-  const email =data.state;
+  const email =data.state[0];
     return (
       <div>
           <aside className="main-sidebar sidebar-dark-primary elevation-4">
           <div className="sidebar">
           <div className="user-panel mt-3 pb-3 mb-3 d-flex">
           <div className="image">
-            <img src="dist/img/AdminLTELogo.png" className="img-circle elevation-2" alt="User Image" />
+            <img src="images/email.png" className="img-circle elevation-2" alt="User Image" />
           </div>
           <div className="info">
             <a className="d-block">{email}</a>
@@ -35,7 +35,7 @@ export default function Menu() {
               <ul className="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
               <li className="nav-item menu-open" >
                     <Link to={`/studentdashboard`} 
-                        state={email}>
+                        state={[email,role,name]}>
                           <a 
                             className={`nav-link ${
                               data.pathname =='/studentdashboard' ? "active" : null
@@ -49,7 +49,7 @@ export default function Menu() {
 
                 <li className="nav-item menu-open">
                 <Link to={`/studentbooks`} 
-                        state={email}>
+                        state={[email,role,name]}>
                           <a 
                             className={`nav-link ${
                               data.pathname =='/studentbooks' ? "active" : null
@@ -62,7 +62,7 @@ export default function Menu() {
 
                 <li className="nav-item menu-open">
                 <Link to={``} 
-                        state={email}>
+                        state={[email,role,name]}>
                           <a className={`nav-link ${
                               data.pathname =='/' ? "active" : null
                             }`} >

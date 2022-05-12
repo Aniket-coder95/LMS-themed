@@ -8,7 +8,7 @@ export default function Menu () {
   const data = useLocation();
   const name = data.state[2];
   const role = data.state[1];
-  const email =data.state;
+  const email =data.state[0];
   // alert(data.state[2])
     return (
       <div>
@@ -54,7 +54,7 @@ export default function Menu () {
           <ul className="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
             <li className="nav-item menu-open" >
                 <Link to={`/admindashboard`} 
-                    state={email}>
+                    state={[email,role,name]}>
                       <a 
                          className={`nav-link ${
                           data.pathname =='/admindashboard' ? "active" : null
@@ -68,7 +68,7 @@ export default function Menu () {
 
             <li className="nav-item menu-open">
             <Link to={`/adminstudents`} 
-                    state={email}>
+                    state={[email,role,name]}>
                       <a 
                          className={`nav-link ${
                           data.pathname =='/adminstudents' ? "active" : null
@@ -80,7 +80,7 @@ export default function Menu () {
             </li>
             <li className="nav-item menu-open">
             <Link to={`/adminlibrarians`} 
-                    state={email}>
+                    state={[email,role,name]}>
                       <a className={`nav-link ${
                           data.pathname =='/adminlibrarians' ? "active" : null
                         }`} >
@@ -92,7 +92,7 @@ export default function Menu () {
             
             <li className="nav-item menu-open">
             <Link to={``} 
-                state={email}>
+                state={[email,role,name]}>
                   <a className="nav-link">
                   <i class="nav-icon fas fa-thin fa-child"></i>
                   Register User
@@ -102,7 +102,7 @@ export default function Menu () {
 
             <li className="nav-item menu-open">
             <Link to={``} 
-                    state={email}>
+                    state={[email,role,name]}>
                       <a className="nav-link">
                       <i class="nav-icon fas fa-thin fa-book"></i>
                       Books Available

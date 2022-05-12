@@ -294,7 +294,7 @@
 }
 
 .addNewBooks{
-  border:1px outset;
+  /* border:outset; */
   width: 100%;
   display: block;
 }
