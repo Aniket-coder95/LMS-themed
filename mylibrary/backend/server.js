@@ -9,13 +9,14 @@ const dotenv = require("dotenv");
 dotenv.config({ path: "./.env" });
 
 const sendmail = require('./HandleMail')
+const randPass = require('./Generatepassword')
   
 var cors = require('cors');
 app.use(cors());
 app.use(express.json());
 app.use(cookieParser());
 
-
+// console.log(randPass())
 // sendmail("kum.testo7@gmail.com", "Student", "kumar aniket", "random_password")
 
 const mongoose = require("mongoose");
@@ -29,26 +30,10 @@ const Borrowedbook = require('../backend/schema/borrowBook');
 const e = require("express");
 
 
-
-
-
-
-// //for production
-// if (process.env.NODE_ENV == "production") {
-//   app.use(express.static("../build"));
-//   const path = require("path");
-//   app.get("*", (req, res) => {
-//     res.sendFile(path.join(__dirname, "build", "index.html"));
-//   });
-// }
-
-
-
-
 app.post('/signup', async(req,res)=>{
     // const name = req.body;
     function generateID() {
-      const length = 8;
+      const length = 4;
       const charset =
         "0123456789";
       let random_studentid = "";
@@ -57,19 +42,22 @@ app.post('/signup', async(req,res)=>{
       }
       return random_studentid;
     }
+    const password = randPass()
     var obj =[
         {
           "studentid":generateID(),
           "name": req.body.name,
           "email": req.body.email,
           "contact": req.body.contact,
-          "password": req.body.password,
+          "password": password,
           "role": req.body.role
           
         }];
     await Signup.insertMany(obj,function(err,res){
     if(err)throw err;
-    console.log("signed-up");
+        console.log("signed-up"); 
+        sendmail(req.body.email,req.body.role,req.body.name,password)
+
     })
   
 })
@@ -285,3 +273,25 @@ app.listen(port, ()=>{
   
     console.log(`listening to port no ${port}`);
 }); 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// //for production
+// if (process.env.NODE_ENV == "production") {
+//   app.use(express.static("../build"));
+//   const path = require("path");
+//   app.get("*", (req, res) => {
+//     res.sendFile(path.join(__dirname, "build", "index.html"));
+//   });
+// }

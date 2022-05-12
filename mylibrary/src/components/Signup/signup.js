@@ -25,15 +25,8 @@ export default function Signup(){
         }
         if (!regEmail.test(Email)) {
             setEmailError('Enter valid Email!');
-        } else {
-            setEmailError('')
-            if(PasswordOne !== PasswordTwo){
-                setPasswordError("password mismatch!  TRY AGAIN");
-            }else{
-                setPasswordError('');
-            }
         }
-        if(!Name || !Email || !Contact || !PasswordOne || !PasswordTwo || !Role){
+        if(!Name || !Email || !Contact || !Role){
             window.alert("Fill every details!");
         }else{
             // send to backend here
@@ -41,7 +34,6 @@ export default function Signup(){
                 name: Name,
                 email: Email,
                 contact: Contact,
-                password: PasswordOne,
                 role: Role
             }
             axios.post("http://localhost:4000/signup",regdata)
@@ -51,6 +43,7 @@ export default function Signup(){
             .catch(error => {
                 console.log(error)
             })
+            alert("Loging credencials sent to your mail")
             window.location.href = '/';
         }
     }
@@ -69,12 +62,12 @@ export default function Signup(){
                             <form>
 
                                 <div className="form-outline mb">
-                                <label className="form-label" htmlFor="form3Example1cg">Your Name</label>
+                                <label className="form-label" htmlFor="form3Example1cg">Name*</label>
                                 <input type="text" id="form3Example1cg" className="form-control form-control-lg" value={Name} onChange={(e)=> setName(e.target.value)}/>
                                 </div>
 
                                 <div className="form-outline mb-4">
-                                <label className="form-label" htmlFor="form3Example3cg" >Your Email</label>
+                                <label className="form-label" htmlFor="form3Example3cg" >Email*</label>
                                 <input type="email" id="form3Example2cg" className="form-control form-control-lg" value={Email} onChange={(e)=>setEmail(e.target.value)} />
                                 <span style={{
                                     // border:'outset',
@@ -87,7 +80,7 @@ export default function Signup(){
         
 
                                 <div className="form-outline mb-4">
-                                <label className="form-label" >Your Contact</label>
+                                <label className="form-label" >Contact</label>
                                 <input type="text" id="form3Example3cg" className="form-control form-control-lg" value={Contact} onChange={(e)=> setContact(e.target.value)}/>
                                     <span style={{
                                         // border:'outset',
@@ -96,28 +89,9 @@ export default function Signup(){
                                         }}>{contactError}
                                     </span>
                                 </div>
-                                
 
                                 <div className="form-outline mb-4">
-                                <label className="form-label" htmlFor="form3Example4cg">Password</label>
-                                <input type="password" id="form3Example5cg" value={PasswordOne} onChange={(e)=> setPasswordOne(e.target.value)} className="form-control form-control-lg" />
-                               </div>
-
-                                <div className="form-outline mb-4">
-                                <label className="form-label" htmlFor="form3Example4cdg">Confirm password</label>
-                                <input type="password" id="form3Example6cdg" value={PasswordTwo} onChange={(e) => setPasswordTwo(e.target.value)}  className="form-control form-control-lg" />
-                                <span style={{
-                                    // border:'outset',
-                                    color: 'red',
-                                    fontSize:15,
-                                    }}>{passwordError}
-                                </span>
-                                </div>
-
-                
-
-                                <div className="form-outline mb-4">
-                                <label className="form-label" htmlFor="form3Example4cg">Your Role</label>
+                                <label className="form-label" htmlFor="form3Example4cg">Role*</label>
                                     <select type="text" id="form3Example4cg" className="form-control form-control-lg" value={Role} onChange={(e)=> setRole(e.target.value)}>
                                         <option>Select</option>
                                         {/* <option >Admin</option> */}
@@ -125,18 +99,6 @@ export default function Signup(){
                                         <option >Librarian</option>
                                     </select>
                                 </div>
-
-                                {/* <div className="form-check d-flex justify-content-center mb-5">
-                                <input
-                                    className="form-check-input me-2"
-                                    type="checkbox"
-                                    value=""
-                                    id="form2Example3cg"
-                                />
-                                <label className="form-check-label" htmlFor="form2Example3g">
-                                    I agree all statements in <a href="#!" className="text-body"><u>Terms of service</u></a>
-                                </label>
-                                </div> */}
 
                                 <div className="d-flex justify-content-center">
                                 <button type="button" onClick={handleSubmit} className="btn btn-success btn-block btn-lg gradient-custom-4 text-body">Register</button>

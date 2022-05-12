@@ -20,7 +20,12 @@ const passwordMailer = async (email, role, name, random_password) => {
     from: user,
     to: email,
     subject: "Login credentials ",
-    html: `Welcome <strong>${name}! </strong> you are registerd as <strong>${role}</strong>. <p>Your one time password is: "<strong>${random_password}</strong>" </p> <p> Please login and change your password immediately.</p>`,
+    html: `Hey <strong>${name}</strong> we are very garteful for choosing us.
+            <p>Your userid is your email and your password is: <strong>"${random_password}"</strong>,we recommend you to reset it afterwards </p>
+            <p>And We are very delighted to let you know that you are registered with us as <strong>"${role}"</strong>.</p>
+            <b> THANK YOU FOR YOUR CONSIDERASION </b>
+            ` 
+            
   };
 
   transporter.sendMail(mailOptions, (error, info) => {
