@@ -37,7 +37,7 @@ function App()
       <Route path='/librarianaddbooks' element={<LibrarianAddBooks/>} /> 
       <Route path='/studentbooks' element={<BorrowBooks/>} /> 
       <Route path='/booksavailable' element={<BooksAvailable/>} />  
-        <Route path='/adminBooks' element={<AdminBooks/>} /> 
+        <Route path='/adminbooks' element={<AdminBooks/>} /> 
         <Route path='/adminlibrarians' element={<AdminLibrarians/>} />      
         <Route path='/adminstudents' element={<AdminStudents/>} />
       <Route path='/userdetailsdemo' element={<GetuserDetails email="student@gmail.com"/>} />

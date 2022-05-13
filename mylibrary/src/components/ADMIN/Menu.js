@@ -67,16 +67,16 @@ export default function Menu () {
 
 
             <li className="nav-item menu-open">
-            <Link to={`/adminstudents`} 
-                    state={[email,role,name]}>
-                      <a 
-                         className={`nav-link ${
-                          data.pathname =='/adminstudents' ? "active" : null
-                        }`} >
-                      <i className="nav-icon fas fa-thin fa-user-tie" />
-                      Students
-                      </a>
-                </Link>
+              <Link to={`/adminstudents`} 
+                  state={[email,role,name]}>
+                    <a 
+                        className={`nav-link ${
+                        data.pathname =='/adminstudents' ? "active" : null
+                      }`} >
+                    <i className="nav-icon fas fa-thin fa-user-tie" />
+                    Students
+                    </a>
+              </Link>
             </li>
             <li className="nav-item menu-open">
             <Link to={`/adminlibrarians`} 
@@ -100,12 +100,15 @@ export default function Menu () {
             </Link>
             </li>
 
+            
             <li className="nav-item menu-open">
-            <Link to={``} 
+            <Link to={`/adminbooks`} 
                     state={[email,role,name]}>
-                      <a className="nav-link">
-                      <i class="nav-icon fas fa-thin fa-book"></i>
-                      Books Available
+                      <a className={`nav-link ${
+                          data.pathname =='/adminbooks' ? "active" : null
+                        }`} >
+                      <i className="nav-icon fas fa-thin fa-user-tie" />
+                      Books
                       </a>
                 </Link>
             </li>

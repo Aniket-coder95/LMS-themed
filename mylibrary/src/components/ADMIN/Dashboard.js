@@ -2,7 +2,7 @@ import React from 'react'
 import { useEffect } from 'react'
 import axios from 'axios'
 import { useState } from 'react'
-import GetuserDetails from '../GetuserDetails';
+import { Link } from 'react-router-dom'
 import { useLocation } from 'react-router-dom';
 
 
@@ -44,6 +44,19 @@ export default function Dashboard () {
       <section className="content">
         <div className="container-fluid">
           <div className="row">
+          <div className="col-lg-3 col-6">
+              <div className="small-box bg-success">
+                <div className="inner">
+                  <h3>{T_users-1}<sup style={{fontSize: 20}}></sup></h3>
+                  <p style={{color:"black"}}>Total Users</p>
+                </div>
+                <div className="icon">
+                  <i className="ion ion-stats-bars" />
+                </div>
+                <a className="small-box-footer">More info <i className="fas fa-arrow-circle-right" /></a>
+              </div>
+            </div>
+            
             <div className="col-lg-3 col-6">
               <div className="small-box bg-info">
                 <div className="inner">
@@ -53,21 +66,16 @@ export default function Dashboard () {
                 <div className="icon">
                   <i className="ion ion-bag" />
                 </div>
-                <a href="#" className="small-box-footer">More info <i className="fas fa-arrow-circle-right" /></a>
+                <a className="small-box-footer">
+                <Link to={`/adminbooks`} 
+                    state={[getdata.state[0],getdata.state[1],getdata.state[2]]}>
+                      More info
+                    <i className="fas fa-arrow-circle-right" />
+                </Link>
+                </a>
               </div>
             </div>
-            <div className="col-lg-3 col-6">
-              <div className="small-box bg-success">
-                <div className="inner">
-                  <h3>{T_users-1}<sup style={{fontSize: 20}}></sup></h3>
-                  <p style={{color:"black"}}>Total Users</p>
-                </div>
-                <div className="icon">
-                  <i className="ion ion-stats-bars" />
-                </div>
-                <a href="#" className="small-box-footer">More info <i className="fas fa-arrow-circle-right" /></a>
-              </div>
-            </div>
+            
             <div className="col-lg-3 col-6">
               <div className="small-box bg-warning">
                 <div className="inner">
@@ -77,7 +85,13 @@ export default function Dashboard () {
                 <div className="icon">
                   <i className="ion ion-person-add" />
                 </div>
-                <a href="#" className="small-box-footer">More info <i className="fas fa-arrow-circle-right" /></a>
+                <a className="small-box-footer">
+                <Link to={`/adminstudents`} 
+                    state={[getdata.state[0],getdata.state[1],getdata.state[2]]}>
+                      More info
+                    <i className="fas fa-arrow-circle-right" />
+                </Link> 
+                </a>
               </div>
             </div>
             <div className="col-lg-3 col-6">
@@ -89,7 +103,13 @@ export default function Dashboard () {
                 <div className="icon">
                   <i className="ion ion-person-add" />
                 </div>
-                <a href="#" className="small-box-footer">More info <i className="fas fa-arrow-circle-right" /></a>
+                <a className="small-box-footer">
+                <Link to={`/adminlibrarians`} 
+                    state={[getdata.state[0],getdata.state[1],getdata.state[2]]}>
+                      More info
+                    <i className="fas fa-arrow-circle-right" />
+                </Link>
+                </a>
               </div>
             </div>
           </div>

@@ -50,12 +50,10 @@ import {useNavigate} from 'react-router-dom'
                 if(msg){
                     console.log(msg)
                 }
-                // console.log(name)
-                // console.log(Response.data.cookie)
+
                 window.localStorage.setItem('accessToken',Response.data.token);
                 if(role === 'Librarian'){
                     navigate('/librariandashboard' ,{state:[email,role,name]});
-                    // <Navigate to='/librariandashboard'  />
                 }else if(role === 'Student'){
                     navigate('/studentdashboard',{state:[email,role,name]});
                 }else if(role === 'Admin'){
