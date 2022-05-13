@@ -6,7 +6,9 @@
   height: 40vmin;
   pointer-events: none;
 }
-
+.form-gap {
+  padding-top: 70px;
+}
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
@@ -324,7 +326,7 @@
 .headingbooktable{
   text-align: center;
   border:1px outset #000000 ;
-  margin-bottom: -5px;
+  margin-botom: -5px;
 }
 
 .udate-book-box{
@@ -344,6 +346,3 @@
   height: 50%;
 }
 
-.reg-nav-div{
-  height: 50%;
-}

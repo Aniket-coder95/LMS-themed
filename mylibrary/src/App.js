@@ -21,6 +21,7 @@ import GetuserDetails from './components/GetuserDetails';
 import BooksAvailable from './components/Admin/BooksAvailable';
 import BorrowBooks from './components/STUDENT/BorrowBooks';
 import Books from './components/Student/books'
+import ForegetPassword from './components/ForgetPassword/ForgetPassword';
 import LibrarianAddBooks from './components/LIBRARIAN/LibrarianAddBooks';
 import AddNewBooks from './components/LIBRARIAN/AddNewBooks';
 
@@ -51,6 +52,7 @@ function App()
       <Route exact path='/studentdashboard' element={<StudentDashboard/>} />
       <Route exact path='/test' element={<Test/>} />
       <Route exact path='/signup' element={<Signup/>} /> 
+      <Route exact path='/forgetpassword' element={<ForegetPassword/>} /> 
       <Route exact path='/addbook' element={<AddBook/>} />
       <Route exact path='/adminregister' element={<AdminRegister/>} />
       <Route exact path='/allstudents' element={<AllStudents/>} />

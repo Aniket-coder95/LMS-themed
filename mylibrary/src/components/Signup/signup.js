@@ -41,7 +41,6 @@ export default function Signup(){
             .catch(error => {
                 console.log(error)
             })
-            
             window.location.href = '/';
         }
     }
@@ -98,11 +97,13 @@ export default function Signup(){
                                     </select>
                                 </div>
 
-                                <div className="d-flex justify-content-center">
-                                <button type="button" onClick={handleSubmit} className="btn btn-success btn-block btn-lg gradient-custom-4 text-body">Register</button>
+                                <div className="ustify-content-center w-50" style={{marginLeft:"25%"}}>
+                                    <button className="btn btn-dark btn-block btn-lg gradient-custom-4" type="button" onClick={handleSubmit}>Register</button>
                                 </div>
-
-                                <p className="text-center text-muted mt-5 mb-0">Have already an account? <a href="/" className="fw-bold text-body"><u>Login here</u></a></p>
+                                <div style={{margin:"40px"}}>
+                                    <p className="text-center text-muted mt-5 mb-0">Have already an account? <a href="/" className="fw-bold text-body"><u>Login here</u></a></p>
+                                    <p className="text-center text-muted mt-1 mb-0">forget Password ? <a href='/forgetpassword' className="fw-bold text-body"><u>Click here</u></a></p>
+                                </div>
 
                             </form>
 

@@ -10,6 +10,7 @@ dotenv.config({ path: "./credential.env" });
  
 const sendmail = require('./HandleMail')
 const randPass = require('./Generatepassword')
+const ResetPassword = require('./Resetpasswordmail')
   
 var cors = require('cors');
 app.use(cors());
@@ -18,6 +19,7 @@ app.use(cookieParser());
 
 // console.log(randPass())
 // sendmail("kum.testo7@gmail.com", "Student", "kumar aniket", "random_password")
+// ResetPassword("kum.testo7@gmail.com","asdfgd")
 
 const mongoose = require("mongoose");
 mongoose.connect("mongodb://localhost:27017/testo7",{useNewUrlParser:true})
@@ -28,6 +30,7 @@ const Signup = require('../backend/schema/signup')
 const registerbooks = require('../backend/schema/booksSchema')
 const Borrowedbook = require('../backend/schema/borrowBook');
 const e = require("express");
+const { getMaxListeners } = require("../backend/schema/signup");
 
 
 app.post('/signup', async(req,res)=>{
@@ -269,6 +272,40 @@ app.get('/getAllBooks', async(req,res)=>{
 app.post('/totalborrowed',(req,res)=>{
   console.log(req.body.email) 
 })
+
+
+app.post('/forgetpassword',async(req,res)=>{
+  const email = req.body.email 
+  const contact = req.body.contact
+
+  const userexist = await Signup.findOne({email:email , contact:contact})
+  if(!userexist){
+    res.json({msg:"Not find any user"})
+  }else{
+    // console.log()
+    ResetPassword(userexist.email,userexist.password)
+    res.json({msg:"Credencials sent to your mail"})
+  }
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 app.listen(port, ()=>{
   

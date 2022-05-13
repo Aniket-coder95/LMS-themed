@@ -106,9 +106,20 @@ import {useNavigate} from 'react-router-dom'
                             <button id="12345678sr" className="btn btn-secondary btn-lg btn-block" >Register</button>
                         </Link>
                         </div>
+                        <div className="containe">
+                            {/* <h5 className="text-center text-muted mt-1 mb-0">New User? 
+                            <a href='/signup' className="fw-bold text-body"><u>Register</u></a>
+                            </h5> */}
+                            <h5 className="text-center text-muted mt-1 mb-0">forget Password? 
+                            <a href='/forgetpassword' className="fw-bold text-body"><u>Click</u></a>
+                            </h5>
+                        </div>
                         <hr className="my-4"/>
+
                     </div>
+                    
                 </div>
+                
             </div>
             </div>
         </div>
