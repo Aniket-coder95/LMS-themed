@@ -346,3 +346,6 @@
   height: 50%;
 }
 
+#changepass{
+  display: none;
+}

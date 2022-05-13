@@ -11,7 +11,7 @@ export default function ForegetPassword(){
     const [contact , setContact] = useState('')
     const [emailError, setEmailError] = useState('');
     const [contactError, setContactError] = useState('');
-    const exist = ''
+    var exist = ''
 
     const ResetPassword=(e)=>{
         e.preventDefault();
@@ -31,11 +31,11 @@ export default function ForegetPassword(){
         .then(Response =>{
             console.log(Response);
             exist = Response.data.msg
+            alert(exist)
         })
         .catch(error => {
             console.log(error)
         })
-        alert(exist)
         window.location.href = '/';
     }
 

@@ -289,9 +289,24 @@ app.post('/forgetpassword',async(req,res)=>{
 })
 
 
+app.post('/changePassword',async(req,res)=>{
+  const email = req.body.email
+  const password = req.body.C_password
+  const New_password = req.body.New_password
+  // console.log(New_password)
+  const is_updated=await Signup.updateOne({email:email, password:password ,isblocked:false},{$set:{password:New_password}})
+  // console.log(email , password , New_password);
+  // console.log(is_updated);
+  if(!is_updated.modifiedCount){
+    res.json({msg:"enter correct password"})
+  }else{
+    res.json({msg:"password changed"})
+  }
+})
 
 
 
+ 
 
 
 

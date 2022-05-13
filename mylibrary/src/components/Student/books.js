@@ -73,7 +73,7 @@ export default function Books(){
                                 <th className="col-xs-1 text-center">BookName</th>
                                 <th className="col-xs-1 text-center">Author</th>
                                 <th className="col-xs-1 text-center">Available</th>
-                                <th className="col-xs-1 text-center">Borrow</th>
+                                <th className="col-xs-1 text-center">Issue</th>
                             </tr>
                             </thead>
                             <tbody>
