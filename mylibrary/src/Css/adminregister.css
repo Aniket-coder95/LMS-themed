@@ -1,6 +1,7 @@
 .registerdivadmin{
+    padding-top: 15px;
     background-color: rgb(240, 247, 247);
     border:outset ;
-    height: 42%;
+    height: 35%;
     overflow:auto;
 }

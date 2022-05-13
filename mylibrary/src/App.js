@@ -17,6 +17,7 @@ import GetuserDetails from './components/GetuserDetails';
   import AdminStudents from './components/ADMIN/AdminStudents';
   import AdminLibrarians from './components/ADMIN/AdminLibrarians';
   import AdminBooks from './components/ADMIN/AdminBooks';
+  import AdminRegisterAdmin from './components/ADMIN/AdminRegisterAdmin';
 import BooksAvailable from './components/Admin/BooksAvailable';
 import BorrowBooks from './components/STUDENT/BorrowBooks';
 import Books from './components/Student/books'
@@ -38,7 +39,8 @@ function App()
       <Route path='/studentbooks' element={<BorrowBooks/>} /> 
       <Route path='/booksavailable' element={<BooksAvailable/>} />  
         <Route path='/adminbooks' element={<AdminBooks/>} /> 
-        <Route path='/adminlibrarians' element={<AdminLibrarians/>} />      
+        <Route path='/adminlibrarians' element={<AdminLibrarians/>} /> 
+        <Route path='/adminregisteradmin' element={<AdminRegisterAdmin/>} />      
         <Route path='/adminstudents' element={<AdminStudents/>} />
       <Route path='/userdetailsdemo' element={<GetuserDetails email="student@gmail.com"/>} />
       <Route path='/demo' element={<Demo/>} />

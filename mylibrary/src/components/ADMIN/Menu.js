@@ -91,17 +91,6 @@ export default function Menu () {
             </li>
             
             <li className="nav-item menu-open">
-            <Link to={``} 
-                state={[email,role,name]}>
-                  <a className="nav-link">
-                  <i class="nav-icon fas fa-thin fa-child"></i>
-                  Register User
-                  </a>
-            </Link>
-            </li>
-
-            
-            <li className="nav-item menu-open">
             <Link to={`/adminbooks`} 
                     state={[email,role,name]}>
                       <a className={`nav-link ${
@@ -109,6 +98,18 @@ export default function Menu () {
                         }`} >
                       <i className="nav-icon fas fa-thin fa-user-tie" />
                       Books
+                      </a>
+                </Link>
+            </li>
+
+            <li className="nav-item menu-open">
+            <Link to={`/adminregisteradmin`} 
+                    state={[email,role,name]}>
+                      <a className={`nav-link ${
+                          data.pathname =='/adminregisteradmin' ? "active" : null
+                        }`} >
+                      <i className="nav-icon fas fa-thin fa-user-tie" />
+                      Register Admin
                       </a>
                 </Link>
             </li>
