@@ -145,7 +145,7 @@ export default function Dashboard () {
                   </div>
                   <div className="card-body">
                     <AddNewBooks />
-                    <div id="world-map" style={{ width: '100%'}} />
+                  <div id="world-map" />
                   </div>
                 </div>
               </section>

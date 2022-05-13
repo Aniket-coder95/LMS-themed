@@ -11,7 +11,7 @@ export default function LibrarianAddBooks(){
         <Menu />
         <div>
             <div className="content-wrapper">
-                <h3 className='card-header'>All Registered Students</h3>
+                {/* <h3 className='card-header'>All Registered Books</h3> */}
                 <section className="content">
                     <AddBooks />
                 </section>
