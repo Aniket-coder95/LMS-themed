@@ -174,7 +174,7 @@ app.post('/registerbooks', async(req,res)=>{
 })
 
 app.get("/booklist", async(req,res )=>{
-  var blist =await registerbooks.find({isblocked:false},{__v:0})
+  const blist = await registerbooks.find({isblocked:false},{__v:0})
   res.json({book:blist})
   
 })

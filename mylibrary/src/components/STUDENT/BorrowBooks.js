@@ -8,12 +8,11 @@ import { useState } from 'react'
 import { useEffect } from 'react'
 
 export default function BorrowBooks(){
-    const[email , setEmail] = useState('')
     const data = useLocation()
+    const[email , setEmail] = useState(data.state[0])
+    
 
-    useEffect(()=>{
-        setEmail(data.state)
-      })
+    
 
     return(
         <>

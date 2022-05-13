@@ -19,7 +19,7 @@ import GetuserDetails from './components/GetuserDetails';
   import AdminBooks from './components/ADMIN/AdminBooks';
   import AdminRegisterAdmin from './components/ADMIN/AdminRegisterAdmin';
 import BooksAvailable from './components/Admin/BooksAvailable';
-import BorrowBooks from './components/STUDENT/BorrowBooks';
+  import BorrowBooks from './components/STUDENT/BorrowBooks';
 import Books from './components/Student/books'
 import ForegetPassword from './components/ForgetPassword/ForgetPassword';
 import LibrarianAddBooks from './components/LIBRARIAN/LibrarianAddBooks';
@@ -37,7 +37,7 @@ function App()
       <Route path='/addnewbooks' element={<AddNewBooks/>} /> 
       <Route path='/books' element={<Books/>} /> 
       <Route path='/librarianaddbooks' element={<LibrarianAddBooks/>} /> 
-      <Route path='/studentbooks' element={<BorrowBooks/>} /> 
+        <Route path='/studentbooks' element={<BorrowBooks/>} /> 
       <Route path='/booksavailable' element={<BooksAvailable/>} />  
         <Route path='/adminbooks' element={<AdminBooks/>} /> 
         <Route path='/adminlibrarians' element={<AdminLibrarians/>} /> 

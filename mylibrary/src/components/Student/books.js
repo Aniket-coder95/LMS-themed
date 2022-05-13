@@ -12,7 +12,7 @@ import {FaCartArrowDown} from 'react-icons/fa'
 export default function Books(){
     const [isActive, setActive] = useState("false");
     const location = useLocation();
-    const [email , setEmail]=useState('');
+    const [email , setEmail]=useState(location.state[0]);
     const [msg, setmsg] = useState('');
     let [arr , setArr] = useState([]);
     const [bookid , setBookid] = useState();
@@ -21,12 +21,12 @@ export default function Books(){
     
      
     useEffect(()=> {
-        setEmail(location.state)
         axios.get("http://localhost:4000/booklist")
         .then((response) => {
             setArr(response.data.book);
+            setIsRender(true)
         })
-    },[])
+    },[is_render])
 
     function handleBorrowBook(bookid,bookname,author,available_books){
         const obj ={
@@ -55,6 +55,7 @@ export default function Books(){
 
     return(
         <>
+        {is_render ? (
         <div>
             <div className="wrapper">
                 <div id="content">
@@ -102,7 +103,7 @@ export default function Books(){
                 </div>
             </div>
         </div>
-        
+        ):(<p></p>)}
         </>
     );
 }

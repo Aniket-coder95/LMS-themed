@@ -3,7 +3,7 @@ import { useLocation } from "react-router-dom";
 import React,{useState,useEffect} from 'react'
 import { Link } from "react-router-dom";
 import axios from "axios";
-import {BsFillArchiveFill,BsFillPenFill} from 'react-icons/bs'
+import {BsFillArchiveFill,BsFillPenFill,BsFillXCircleFill} from 'react-icons/bs'
 // import Signup from '../Signup/signup'
 
 export default function AllStudents(){
@@ -41,15 +41,18 @@ export default function AllStudents(){
         // document.getElementById("user-info").style.display='none'
         var x = document.getElementById("updatebook-user-box");
         if (x.style.display === "none") {
-            x.style.display = "block";
-        } else {
             x.style.display = "none";
+            x.style.display = "block";
         }
         setUserId(studentid)
         setUpdateUserName(name)
         setUpdateUserEmail(email)
         setUpdateUserContact(contact)
         // alert(studentid + " "+ name + " "+  email+ " "+ contact)
+    }
+    function hidden(){
+        var x = document.getElementById("updatebook-user-box");
+        x.style.display = "none";  
     }
     function updateUser(){
         // if(!userId || !updateUserName || !updateUserEmail || !updateUserContact){
@@ -65,6 +68,7 @@ export default function AllStudents(){
         axios.post('http://localhost:4000/update-users-data',obj)
         window.location.href='/adminstudents';
     }
+    
 
     function hideme(){
         var x = document.getElementById("user-info");
@@ -135,6 +139,7 @@ export default function AllStudents(){
                                             <BsFillPenFill 
                                             style={{cursor: "pointer"}} 
                                             onClick={()=>{handleupdateUser(val.studentid , val.name,val.email,val.contact)}} />
+                                            <BsFillXCircleFill style={{margin:"20px"}} onClick={hidden}/>
                                         </td>
                                         
                                     </tr>

@@ -3,7 +3,7 @@ import { useLocation } from "react-router-dom";
 import React,{useState,useEffect} from 'react'
 import { Link } from "react-router-dom";
 import axios from "axios";
-import {BsFillArchiveFill,BsFillPenFill} from 'react-icons/bs'
+import {BsFillArchiveFill,BsFillPenFill,BsFillXCircleFill} from 'react-icons/bs'
 // import Signup from '../Signup/signup'
 
 export default function AllLibrarians(){
@@ -35,22 +35,21 @@ export default function AllLibrarians(){
         // document.getElementById("username").value=email
     },[])
 
-    function logout(){
-        window. localStorage.clear('accessToken');
-        window.location.href='/';
-       }
+   
     
     function handleupdateUser(studentid , name,email,contact){
         var x = document.getElementById("updatebook-user-box");
         if (x.style.display === "none") {
             x.style.display = "block";
-        } else {
-            x.style.display = "none";
-        }
+        } 
         setUserId(studentid)
         setUpdateUserName(name)
         setUpdateUserEmail(email)
         setUpdateUserContact(contact)
+    }
+    function hidden(){
+        var x = document.getElementById("updatebook-user-box");
+        x.style.display = "none";  
     }
     function updateUser(){
         const obj = {
@@ -120,7 +119,9 @@ export default function AllLibrarians(){
                                         <td className="col-xs-1 text-center" style={{color: "#8b1919"}} >
                                             <BsFillArchiveFill style={{cursor: "pointer"}} onClick={()=>{handleremoveLibrarian(val.studentid)}} /></td>
                                         <td className="col-xs-1 text-center" id="c" style={{color: "#445e11"}}>
-                                            <BsFillPenFill style={{cursor: "pointer"}} onClick={()=>{handleupdateUser(val.studentid,val.name,val.email,val.contact)}} /></td>
+                                            <BsFillPenFill style={{cursor: "pointer"}} onClick={()=>{handleupdateUser(val.studentid,val.name,val.email,val.contact)}} />
+                                            <BsFillXCircleFill style={{margin:"20px"}} onClick={hidden}/>
+                                            </td>
                                         </tr>
                                         
                                 );

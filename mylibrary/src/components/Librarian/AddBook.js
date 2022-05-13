@@ -3,7 +3,7 @@ import React,{useState , useEffect} from 'react'
 import { useLocation } from "react-router-dom";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import {BsFillPenFill , BsFillArchiveFill} from 'react-icons/bs'
+import {BsFillPenFill , BsFillArchiveFill,BsFillXCircleFill} from 'react-icons/bs'
 // import { useEffect } from "react";
 
 export default function LibrarianDashboard(){
@@ -48,11 +48,13 @@ export default function LibrarianDashboard(){
         let x1 = document.getElementById("updatebook-box")
         if(x1.style.display === 'none'){
             x1.style.display = "block"
-        }else{
-            x1.style.display = "none"
         }
 
         // alert('im clicked'+bookid)
+    }
+    function hidden(){
+        var x = document.getElementById("updatebook-box");
+        x.style.display = "none";  
     }
     function updatebookFun(){
         console.log(bookid)
@@ -118,7 +120,9 @@ export default function LibrarianDashboard(){
                                         <td className="col-xs-1 text-center" > {val.bookname}</td>
                                         <td className="col-xs-1 text-center">{val.author}</td>
                                         <td className="col-xs-1 text-center" style={{color: "#8b1919"}} ><BsFillArchiveFill style={{cursor: "pointer"}} onClick={()=>{handleremovebook(val.bookid)}} /></td>
-                                        <td className="col-xs-1 text-center" id="c" style={{color: "#445e11"}}><BsFillPenFill style={{cursor: "pointer"}} onClick={()=>{handleupdatebook(val.bookid)}} /></td>
+                                        <td className="col-xs-1 text-center" id="c" style={{color: "#445e11"}}><BsFillPenFill style={{cursor: "pointer"}} onClick={()=>{handleupdatebook(val.bookid)}} />
+                                        <BsFillXCircleFill style={{margin:"20px"}} onClick={hidden}/>
+                                        </td>
                                     </tr>
                                 );
                                 })
