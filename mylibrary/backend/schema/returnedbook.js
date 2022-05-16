@@ -1,9 +1,14 @@
 
 var mongoose = require('mongoose') ;
-
+var id = require('../uniqueId')
 var db = mongoose.Schema;
 var returnedBookSchema = new db ({
-   studentId : {
+   id : {
+      type : 'String' ,
+      require : 'true',
+      default : id()
+   },
+   email : {
       type : 'String' ,
       require : 'true'
    },
@@ -18,7 +23,7 @@ var returnedBookSchema = new db ({
    returnDate: {
       type:'String',
       required:'true',
-      default:new Date().toLocaleDateString()
+      default:0
     },
     fine: {
         type:'Number',
@@ -28,7 +33,7 @@ var returnedBookSchema = new db ({
     isblocked: {
         type:'Boolean',
         require:'true',
-        default:false
+        default:false 
     },
 });
 

@@ -16,12 +16,12 @@ export default function AdminRegisterAdmin(){
                         <div className="card bg-gradient-primary">
                             <div className="card-header border-0">
                                 <h3 className="card-title">
-                                <i className="fas fa-map-marker-alt mr-1" />
+                                <i className="fas fa-map-marker-alt mr-1 text-dark" />
                                 Add Admins Here
                                 </h3>
                                 <div className="card-tools">
                                 <button type="button" className="btn btn-primary btn-sm" data-card-widget="collapse" title="Collapse">
-                                    <i className="fas fa-minus" />
+                                    <i className="fas fa-minus " />
                                 </button>
                                 </div>
                             </div>

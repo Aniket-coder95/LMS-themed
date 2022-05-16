@@ -9,7 +9,8 @@ import {BsFillXCircleFill , BsBank2} from 'react-icons/bs'
 export default function Issuedbooks(props){
     const [issued , setIsseud] = useState([]);
     const [email , setEmail] = useState(props.email)
-    const [fine , setFine] = useState(Number)
+    // const [fine , setFine] = useState(Number)
+    
 
     useEffect(()=> {
         // const email=
@@ -23,8 +24,17 @@ export default function Issuedbooks(props){
         })
     },[])
 
-    const payandreturn =()=>{
-       return alert("returned")
+    const payandreturn =(bookid,issueDate , fine)=>{
+    //    return alert("returned")
+        const obj ={
+            issueDate:issueDate,
+            fine:fine,
+            email:email,
+            bookid:bookid
+        }
+        axios.post('http://localhost:4000/returnbook',obj)
+        .catch(e => {console.log('error in /returnbook')})
+        window.location.href='/studentbooks';
     }
 
     function hidden(){
@@ -92,7 +102,7 @@ export default function Issuedbooks(props){
                                                 <td className="col-xs-1 text-center text-success">{val.date}</td>
                                                 <td className="col-xs-1 text-center text-info">{val.returndate}</td>
                                                 <td className="col-xs-1 text-center text-danger">Rs. {getFine(val.returndate , val.bookid)}</td>
-                                                <td className="col-xs-1 text-center"><a><BsBank2 onClick={payandreturn}/></a></td>
+                                                <td className="col-xs-1 text-center"><a><BsBank2 onClick={()=>{payandreturn(val.bookid,val.date,val.fine)}}/></a></td>
                                             </tr>
                                         );
                                         })

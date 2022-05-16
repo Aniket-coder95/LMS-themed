@@ -81,7 +81,7 @@ export default function Books(){
                     </button>
                     
                     <div className="tablediv table-responsive" id="book-info">
-                        <h5 className="heading text-primary">All Books Available</h5>
+                        <h5 className="heading text-primary">Books Available</h5>
                         <table className="table table-bordered">
                         <thead>
                             <tr>

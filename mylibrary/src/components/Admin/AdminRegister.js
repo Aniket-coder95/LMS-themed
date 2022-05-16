@@ -74,11 +74,11 @@ export default function AdminRegister(){
                         <form  id="myform" style={{margin: "20px 20px 0 20px"}} >
                             <div class="row" style={{margin: "20px 20px 0 20px"}}>
                                 <div class="col">
-                                <label className="label" >Full Name</label>
+                                <label className="label text-dark" >Full Name</label>
                                 <input type="text" class="form-control" placeholder="Name" value={addname} onChange={(e)=> setAddname(e.target.value)} />
                                 </div>
                                 <div class="col">
-                                <label className="label" >Email</label>
+                                <label className="label text-dark" >Email</label>
                                 <input type="email" class="form-control" placeholder="Email" value={addemail} onChange={(e)=> setAddemail(e.target.value)}/>
                                 <div >
                                     <span style={{
@@ -93,7 +93,7 @@ export default function AdminRegister(){
                             </div>
                             <div class="row" style={{margin: "20px 20px 0 20px"}}>
                                 <div class="col">
-                                <label className="label" >Contact</label>
+                                <label className="label text-dark" >Contact</label>
                                 <input  class="form-control" placeholder="Contact" value={addcontact} onChange={(e)=> setAddcontact(e.target.value)} />
                                 <div >
                                     <span style={{
@@ -105,7 +105,7 @@ export default function AdminRegister(){
                                 </div>
                                 </div>
                                 <div class="col">
-                                <label className="label" >Role</label>
+                                <label className="label text-dark" >Role</label>
                                     <select type="text" id="form3Example4cg" className="form-control" value={addrole} onChange={(e)=> setAddrole(e.target.value)}>
                                         <option>Select</option>
                                         <option >Admin</option>

@@ -330,7 +330,7 @@ app.get('/getTotalIssued/:user',async(req,res)=>{
 app.get('/getIssedBooks/:user',async(req,res)=>{
   const {user} = req.params
     console.log(user)
-    const count = await Borrowedbook.find({email:user})
+    const count = await Borrowedbook.find({email:user,isblocked:false})
     if(!count){
       // res.json({notify:"No book isseued to you"})
       console.log("No book isseued to you")
@@ -364,7 +364,31 @@ app.post('/updatefine',async(req,res)=>{
 })
 
 
+app.post('/returnbook',async(req,res)=>{
+    const email = req.body.email
+    const bookid = req.body.bookid
+    const issueDate = req.body.issueDate
+    const fine = req.body.fine
+    const returndate = new Date().toLocaleDateString()
+    const obj ={
+      email:email,
+      bookid:bookid,
+      issueDate:issueDate,
+      returndate:returndate,
+      fine:fine
+    }
+    ReturnBook.insertMany(obj)
+    .catch(e=>{if(e)throw e})
+    const x = await registerbooks.findOne({bookid:bookid},{_id:0,bookid:0,bookname:0,author:0,total_books:0,isblocked:0,__v:0})
+    const x1 = eval(x.available_books)+1
+    // console.log(x1)
+    await registerbooks.updateOne({bookid:bookid,isblocked:false},{$set:{available_books:x1}})
 
+    await Borrowedbook.deleteOne({bookid:bookid})
+ 
+
+    console.log( email,bookid,issueDate,fine , returndate)
+})
 
 
 
