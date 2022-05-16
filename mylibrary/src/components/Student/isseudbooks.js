@@ -9,6 +9,7 @@ import {BsFillXCircleFill , BsBank2} from 'react-icons/bs'
 export default function Issuedbooks(props){
     const [issued , setIsseud] = useState([]);
     const [email , setEmail] = useState(props.email)
+    const [fine , setFine] = useState(Number)
 
     useEffect(()=> {
         // const email=
@@ -34,7 +35,7 @@ export default function Issuedbooks(props){
             x.style.display = "none";
         }  
     }
-    const getFine = (return_date) =>{
+    const getFine = (return_date , bookid) =>{
         const current_date = new Date().toLocaleDateString();
         console.log(current_date);
       
@@ -51,7 +52,13 @@ export default function Issuedbooks(props){
           (1000 * 60 * 60 * 24);
       
         const late = current_date_day - return_date_day;
+        const fine = late<0 ? 0 : (late * 5)
         
+        const obj = {fine:fine , bookid:bookid}
+        // console.log(obj.fine,obj.bookid)
+        axios.post("http://localhost:4000/updatefine",obj)
+        .catch(e=>{console.log("error in updatefine")})
+
         return late < 0 ? 0 : (late * 5)  // * rupees per day
     }
     return(
@@ -84,7 +91,7 @@ export default function Issuedbooks(props){
                                                 <td className="col-xs-1 text-center">{val.author}</td>
                                                 <td className="col-xs-1 text-center text-success">{val.date}</td>
                                                 <td className="col-xs-1 text-center text-info">{val.returndate}</td>
-                                                <td className="col-xs-1 text-center text-danger">Rs. {getFine(val.returndate)}</td>
+                                                <td className="col-xs-1 text-center text-danger">Rs. {getFine(val.returndate , val.bookid)}</td>
                                                 <td className="col-xs-1 text-center"><a><BsBank2 onClick={payandreturn}/></a></td>
                                             </tr>
                                         );

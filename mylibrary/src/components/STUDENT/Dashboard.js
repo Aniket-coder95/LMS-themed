@@ -10,6 +10,8 @@ export default function Dashboard() {
   const getdata = useLocation();
   const [email , setEmail] = useState('')
   const [T_books, setT_books] = useState(Number)
+  const [T_borrowed, setT_borrowed] = useState(Number)
+  const [T_fine, setT_fine] = useState(Number)
   
 
   useEffect(()=>{
@@ -18,7 +20,7 @@ export default function Dashboard() {
 
     axios.post('http://localhost:4000/totalborrowed',obj)
     .then(response => {
-
+      setT_borrowed(response.data.totalborrowed)
     })
     .catch(e=>{
 
@@ -27,6 +29,13 @@ export default function Dashboard() {
     .then(Response=>{
       // alert(Response.data.users)
       setT_books(Response.data.books)
+    })
+    axios.get(`http://localhost:4000/totalFine/${email}`)
+    .then(response => {
+      setT_fine(response.data.totalfine)
+    })
+    .catch(e=>{
+
     })
 
   })
@@ -38,9 +47,7 @@ export default function Dashboard() {
     }
     const obj ={email:email , C_password:C_password , New_password:New_password}
     axios.post('http://localhost:4000/changePassword',obj)
-    .then(Response=>{
-      
-    })
+    .catch(e=>{console.log("error in change password")})
   }
   function hideme(){
     var x = document.getElementById('changepass');
@@ -91,7 +98,7 @@ export default function Dashboard() {
                 <div className="col-lg-4 col-4">
                   <div className="small-box bg-warning">
                     <div className="inner">
-                      <h3>T_borrowed<sup style={{fontSize: 20}}></sup></h3>
+                      <h3>{T_borrowed}<sup style={{fontSize: 20}}></sup></h3>
                       <p style={{color:"black"}}>You borrowed</p>
                     </div>
                     <div className="icon">
@@ -103,7 +110,7 @@ export default function Dashboard() {
                 <div className="col-lg-4 col-4">
                   <div className="small-box bg-danger">
                     <div className="inner">
-                      <h3>T_fine</h3>
+                      <h3>Rs.{T_fine}</h3>
                       <p style={{color:"black"}}>Total fine</p>
                     </div>
                     <div className="icon">

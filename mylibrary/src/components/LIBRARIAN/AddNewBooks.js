@@ -54,7 +54,7 @@ export default function AddNewBooks(){
                     <div className='d-flex justify-content-center'>
                     <div className="form-group w-50">
                         <label htmlFor="form3Example4cg">Total_Books</label>
-                        <input type="number" placeholder="Enter total books" className="form-control" value={total_books} onChange={(e)=>setTotal_books(e.target.value)} />
+                        <input type="number" min="1" placeholder="Enter total books" className="form-control" value={total_books} onChange={(e)=>setTotal_books(e.target.value)} />
                     </div>
                     </div>
                     <div className='d-flex justify-content-center'>

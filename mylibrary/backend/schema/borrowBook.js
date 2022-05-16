@@ -30,6 +30,11 @@ var schema = new db ({
       required:'true',
       default: plusdate()
    },
+   fine: {
+      type:'Number',
+      required:'true',
+      default: 0
+   },
    isblocked: {
       type:'Boolean',
       require:'true',

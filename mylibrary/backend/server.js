@@ -30,8 +30,9 @@ mongoose.connect("mongodb://localhost:27017/testo7",{useNewUrlParser:true})
 const Signup = require('../backend/schema/signup')
 const registerbooks = require('../backend/schema/booksSchema')
 const Borrowedbook = require('../backend/schema/borrowBook');
+const ReturnBook = require('../backend/schema/returnedbook')
 const e = require("express");
-const { getMaxListeners } = require("../backend/schema/signup");
+// const { getMaxListeners } = require("../backend/schema/signup");
 
 
 app.post('/signup', async(req,res)=>{
@@ -270,8 +271,15 @@ app.get('/getAllBooks', async(req,res)=>{
   res.json({books:arr.length})
 })
  
-app.post('/totalborrowed',(req,res)=>{
-  console.log(req.body.email) 
+app.post('/totalborrowed',async(req,res)=>{
+  //console.log(req.body.email)
+  const email = req.body.email
+  const totalborrowed = await Borrowedbook.find({email,isblocked:false})
+  if(!totalborrowed){
+    res.json({totalborrowed: 0})
+  }else{
+    res.json({totalborrowed:totalborrowed.length})
+  }
 })
 
 
@@ -332,7 +340,28 @@ app.get('/getIssedBooks/:user',async(req,res)=>{
     }
 })
 
-
+app.get('/totalFine/:email',async(req,res)=>{
+  const {email} = req.params
+    console.log(email)
+    const x =await Borrowedbook.find({email:email})
+    var totalfine =''
+    if(!x){
+      res.json({totalfine:totalfine})
+      // console.log("zero")
+    }else{
+      x.map((val,index)=>{
+        totalfine = eval(totalfine + val.fine)
+      })
+      res.json({totalfine:totalfine})
+      // console.log(totalfine)
+    }
+})
+app.post('/updatefine',async(req,res)=>{
+  let bookid = req.body.bookid
+  let fine = req.body.fine
+  // console.log( bookid ,fine)
+  await Borrowedbook.updateOne({bookid:bookid,isblocked:false},{$set:{fine:fine}})
+})
 
 
 
