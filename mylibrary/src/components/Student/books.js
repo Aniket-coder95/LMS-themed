@@ -38,7 +38,7 @@ export default function Books(){
     
 
     function handleBorrowBook(bookid,bookname,author,available_books){
-        if((Totalissued+1) <= 3){
+        if((Totalissued+1) <= 3 && available_books>0){
             const obj ={
                 email:email,
                 bookid:bookid,
@@ -48,11 +48,11 @@ export default function Books(){
             }
             axios.post("http://localhost:4000/borrowbooks",obj)
             .then(response=>{
-                alert(response.data.borrowmsg)
+                alert("issued")
             })
             window.location.href='/studentbooks'
         }else{
-            alert("you can not issue books! please return first")
+            alert("you can not issue books! ")
         }
         
     }
@@ -100,7 +100,7 @@ export default function Books(){
                                         <td className="col-xs-1 text-center">{index+1}</td>
                                         <td className="col-xs-1 text-center" > {val.bookname}</td>
                                         <td className="col-xs-1 text-center">{val.author}</td>
-                                        <td className="col-xs-1 text-center">{val.available_books}</td>
+                                        <td className="col-xs-1 text-center "><a className={val.available_books != 0? "text-success":"text-danger"}>{val.available_books}</a></td>
                                         <td className="col-xs-1 text-center" style={{color: "#8b1919"}} ><FaCartArrowDown style={{cursor: "pointer"}} onClick={()=>{handleBorrowBook(val.bookid,val.bookname,val.author,val.available_books)}} /></td>
                                     </tr>
                                 );
