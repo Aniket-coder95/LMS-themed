@@ -11,12 +11,13 @@ dotenv.config({ path: "./credential.env" });
 const sendmail = require('./HandleMail')
 const randPass = require('./Generatepassword')
 const ResetPassword = require('./Resetpasswordmail')
+const uniqueId = require('./uniqueId') 
   
 var cors = require('cors');
 app.use(cors());
 app.use(express.json());
 app.use(cookieParser());
-
+// console.log(uniqueId())
 // console.log(randPass())
 // sendmail("kum.testo7@gmail.com", "Student", "kumar aniket", "random_password")
 // ResetPassword("kum.testo7@gmail.com","asdfgd")

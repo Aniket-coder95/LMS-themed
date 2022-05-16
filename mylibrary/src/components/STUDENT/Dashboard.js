@@ -91,7 +91,7 @@ export default function Dashboard() {
                 <div className="col-lg-4 col-4">
                   <div className="small-box bg-warning">
                     <div className="inner">
-                      <h3>T_users-1<sup style={{fontSize: 20}}></sup></h3>
+                      <h3>T_borrowed<sup style={{fontSize: 20}}></sup></h3>
                       <p style={{color:"black"}}>You borrowed</p>
                     </div>
                     <div className="icon">
@@ -103,7 +103,7 @@ export default function Dashboard() {
                 <div className="col-lg-4 col-4">
                   <div className="small-box bg-danger">
                     <div className="inner">
-                      <h3>T_students</h3>
+                      <h3>T_fine</h3>
                       <p style={{color:"black"}}>Total fine</p>
                     </div>
                     <div className="icon">

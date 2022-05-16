@@ -120,7 +120,6 @@ export default function AllLibrarians(){
                                             <BsFillArchiveFill style={{cursor: "pointer"}} onClick={()=>{handleremoveLibrarian(val.studentid)}} /></td>
                                         <td className="col-xs-1 text-center" id="c" style={{color: "#445e11"}}>
                                             <BsFillPenFill style={{cursor: "pointer"}} onClick={()=>{handleupdateUser(val.studentid,val.name,val.email,val.contact)}} />
-                                            <BsFillXCircleFill style={{margin:"20px"}} onClick={hidden}/>
                                             </td>
                                         </tr>
                                         
@@ -138,6 +137,11 @@ export default function AllLibrarians(){
 
                     {/* update book is here */}
                     <div className="udate-user-box responsive" id="updatebook-user-box"  style={{display:'none'}}>
+                        <div style={{position:"relative"}}>
+                            <div id="icon">
+                                <BsFillXCircleFill style={{margin:"20px"}} onClick={hidden}/>
+                            </div>
+                        </div>
                         <h5 className="heading">Update Here</h5>
                         <div className="form-group responsive">
                             <label >Librarians Name</label>

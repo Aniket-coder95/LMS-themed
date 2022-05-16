@@ -335,11 +335,11 @@
 }
 .udate-user-box{
   border:inset ;
-  height: 32%;
+  height: 35%;
 }
 .udate-student-box{
   border:inset ;
-  height: 20%;
+  height: 40%;
 }
 .box-librarian{
   border:outset ;
@@ -348,4 +348,12 @@
 
 #changepass{
   display: none;
+}
+
+#icon{
+position:absolute;
+right:0;
+top:0;
+margin-top: 5px;
+margin-right:10px;
 }

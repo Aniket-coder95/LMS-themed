@@ -139,7 +139,7 @@ export default function AllStudents(){
                                             <BsFillPenFill 
                                             style={{cursor: "pointer"}} 
                                             onClick={()=>{handleupdateUser(val.studentid , val.name,val.email,val.contact)}} />
-                                            <BsFillXCircleFill style={{margin:"20px"}} onClick={hidden}/>
+                                            
                                         </td>
                                         
                                     </tr>
@@ -155,7 +155,18 @@ export default function AllStudents(){
                     <br />
                     {/* all students ends here*/}
                     <div className="udate-student-box responsive" id="updatebook-user-box"  style={{display:'none'}}>
+                        
+                        
+                        <div className="box" style={{position:"relative"}}>
+                        <div className="rightircle" id="icon">
+                            <BsFillXCircleFill  onClick={hidden}/>
+                        </div>
+                        </div>
+                        
+                        
+                        
                         <h5 className="heading">Update Here</h5>
+                        
                         <div className="form-group responsive">
                             <label >Librarians Name</label>
                             <input type="text" value={updateUserName} onChange={(e)=>setUpdateUserName(e.target.value)} className="form-control" />

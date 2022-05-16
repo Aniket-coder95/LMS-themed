@@ -19,20 +19,10 @@ var schema = new db ({
       type : 'String' ,
       require : 'true'
    },
-   // isborrowed:{
-   //    type:'Boolean',
-   //    require:'true',
-   //    default:false 
-   // },
-   // total_borrowed:{
-   //    type:"Number",
-   //    require:"true",
-   //    default:0 
-   // },
    date: {
     type:'String',
     required:'true',
-    default:Date()
+    default:new Date().toLocaleDateString()
     },
    isblocked: {
       type:'Boolean',

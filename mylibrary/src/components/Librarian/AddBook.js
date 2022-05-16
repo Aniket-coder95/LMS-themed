@@ -121,7 +121,7 @@ export default function LibrarianDashboard(){
                                         <td className="col-xs-1 text-center">{val.author}</td>
                                         <td className="col-xs-1 text-center" style={{color: "#8b1919"}} ><BsFillArchiveFill style={{cursor: "pointer"}} onClick={()=>{handleremovebook(val.bookid)}} /></td>
                                         <td className="col-xs-1 text-center" id="c" style={{color: "#445e11"}}><BsFillPenFill style={{cursor: "pointer"}} onClick={()=>{handleupdatebook(val.bookid)}} />
-                                        <BsFillXCircleFill style={{margin:"20px"}} onClick={hidden}/>
+                                        
                                         </td>
                                     </tr>
                                 );
@@ -140,6 +140,11 @@ export default function LibrarianDashboard(){
                                     <br />
                     {/* update book is here */}
                     <div className="udate-book-box responsive" id="updatebook-box"  style={{display:'none'}}>
+                        <div style={{position:"relative"}}>
+                            <div id="icon">
+                                <BsFillXCircleFill style={{margin:"20px"}} onClick={hidden}/>
+                            </div>
+                        </div>
                         <h5 className="heading">Update Here</h5>
                         <div className="form-group">
                             <label htmlFor="form3Example1ab">Book Name</label>
