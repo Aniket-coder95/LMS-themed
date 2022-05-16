@@ -159,7 +159,7 @@ export default function AllStudents(){
                         
                         <div className="box" style={{position:"relative"}}>
                         <div className="rightircle" id="icon">
-                            <BsFillXCircleFill  onClick={hidden}/>
+                            <a><BsFillXCircleFill  onClick={hidden}/></a>
                         </div>
                         </div>
                         

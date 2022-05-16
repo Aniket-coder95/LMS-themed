@@ -76,7 +76,7 @@ export default function Issuedbooks(props){
             <div className="tablediv table-responsive" >
                             <div style={{position:"relative",top:"-10px"}}>
                                 <div id="icon">
-                                    <BsFillXCircleFill style={{margin:"20px"}} onClick={hidden}/>
+                                    <a><BsFillXCircleFill style={{margin:"20px"}} onClick={hidden}/></a>
                                 </div>
                             </div>
                             <h5 className="heading text-primary">Books Issued </h5>

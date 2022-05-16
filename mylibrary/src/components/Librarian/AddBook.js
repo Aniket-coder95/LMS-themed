@@ -142,7 +142,7 @@ export default function LibrarianDashboard(){
                     <div className="udate-book-box responsive" id="updatebook-box"  style={{display:'none'}}>
                         <div style={{position:"relative"}}>
                             <div id="icon">
-                                <BsFillXCircleFill style={{margin:"20px"}} onClick={hidden}/>
+                                <a><BsFillXCircleFill style={{margin:"20px"}} onClick={hidden}/></a>
                             </div>
                         </div>
                         <h5 className="heading">Update Here</h5>

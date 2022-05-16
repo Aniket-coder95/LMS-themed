@@ -139,7 +139,7 @@ export default function AllLibrarians(){
                     <div className="udate-user-box responsive" id="updatebook-user-box"  style={{display:'none'}}>
                         <div style={{position:"relative"}}>
                             <div id="icon">
-                                <BsFillXCircleFill style={{margin:"20px"}} onClick={hidden}/>
+                                <a><BsFillXCircleFill style={{margin:"20px"}} onClick={hidden}/></a>
                             </div>
                         </div>
                         <h5 className="heading">Update Here</h5>
