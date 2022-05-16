@@ -48,7 +48,7 @@ export default function Books(){
             }
             axios.post("http://localhost:4000/borrowbooks",obj)
             .then(response=>{
-                alert("issued")
+                alert(response.data.borrowmsg)
             })
             window.location.href='/studentbooks'
         }else{
@@ -123,7 +123,7 @@ export default function Books(){
                 </div>
             </div>
         </div>
-        ):(<p></p>)}
+        ):(<p>not render</p>)}
         </>
     );
 }

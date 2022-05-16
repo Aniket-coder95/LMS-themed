@@ -2,7 +2,7 @@ import React from 'react'
 import { useState } from 'react';
 import { useEffect } from 'react';
 import axios from 'axios';
-import {BsFillXCircleFill} from 'react-icons/bs'
+import {BsFillXCircleFill , BsBank2} from 'react-icons/bs'
 
 
 
@@ -22,7 +22,9 @@ export default function Issuedbooks(props){
         })
     },[])
 
-    
+    const payandreturn =()=>{
+       return alert("returned")
+    }
 
     function hidden(){
         var x = document.getElementById("book-issued-info");
@@ -67,9 +69,10 @@ export default function Issuedbooks(props){
                                     <tr>
                                         <th className="col-xs-1 text-center text-primary">BookName</th>
                                         <th className="col-xs-1 text-center text-primary">Author</th>
-                                        <th className="col-xs-1 text-center text-primary">issue Date</th>
-                                        <th className="col-xs-1 text-center text-primary">return Date</th>
+                                        <th className="col-xs-1 text-center text-primary">Issue Date</th>
+                                        <th className="col-xs-1 text-center text-primary">Return Date</th>
                                         <th className="col-xs-1 text-center text-primary">Fine (Rs.)</th>
+                                        <th className="col-xs-1 text-center text-primary">Pay & return</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -82,6 +85,7 @@ export default function Issuedbooks(props){
                                                 <td className="col-xs-1 text-center text-success">{val.date}</td>
                                                 <td className="col-xs-1 text-center text-info">{val.returndate}</td>
                                                 <td className="col-xs-1 text-center text-danger">Rs. {getFine(val.returndate)}</td>
+                                                <td className="col-xs-1 text-center"><a><BsBank2 onClick={payandreturn}/></a></td>
                                             </tr>
                                         );
                                         })
