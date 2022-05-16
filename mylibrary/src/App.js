@@ -24,6 +24,7 @@ import Books from './components/Student/books'
 import ForegetPassword from './components/ForgetPassword/ForgetPassword';
 import LibrarianAddBooks from './components/LIBRARIAN/LibrarianAddBooks';
 import AddNewBooks from './components/LIBRARIAN/AddNewBooks';
+  import Issuedbooks from './components/Student/isseudbooks';
 
 
 
@@ -34,6 +35,7 @@ function App()
   return (
     <>
       <Routes>
+        <Route path='/issuedbooks' element={<Issuedbooks/>} /> 
       <Route path='/addnewbooks' element={<AddNewBooks/>} /> 
       <Route path='/books' element={<Books/>} /> 
       <Route path='/librarianaddbooks' element={<LibrarianAddBooks/>} /> 

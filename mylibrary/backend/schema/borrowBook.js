@@ -1,5 +1,6 @@
 
 var mongoose = require('mongoose') ;
+const plusdate = require('../plusdays')
 
 var db = mongoose.Schema;
 var schema = new db ({
@@ -20,10 +21,15 @@ var schema = new db ({
       require : 'true'
    },
    date: {
-    type:'String',
-    required:'true',
-    default:new Date().toLocaleDateString()
+      type:'String',
+      required:'true',
+      default:new Date().toLocaleDateString()
     },
+   returndate: {
+      type:'String',
+      required:'true',
+      default: plusdate()
+   },
    isblocked: {
       type:'Boolean',
       require:'true',

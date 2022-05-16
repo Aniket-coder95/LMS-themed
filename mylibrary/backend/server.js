@@ -306,12 +306,31 @@ app.post('/changePassword',async(req,res)=>{
 })
 
 
+app.get('/getTotalIssued/:user',async(req,res)=>{
+  const {user} = req.params
+    // console.log(user)
+    const count = await Borrowedbook.find({email:user})
+    if(!count){
+      res.json({total:count.length})
+      // console.log(0)
+    }else{
+      res.json({total:count.length})
+      // console.log(count.length)
+    }
+})
 
- 
-
-
-
-
+app.get('/getIssedBooks/:user',async(req,res)=>{
+  const {user} = req.params
+    console.log(user)
+    const count = await Borrowedbook.find({email:user})
+    if(!count){
+      // res.json({notify:"No book isseued to you"})
+      console.log("No book isseued to you")
+    }else{
+      res.json({details:count})
+      // console.log(count)
+    }
+})
 
 
 

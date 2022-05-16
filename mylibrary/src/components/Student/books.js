@@ -3,19 +3,19 @@ import { useLocation } from "react-router-dom";
 import React,{useState , useEffect} from 'react'
 import axios from "axios";
 import {FaCartArrowDown} from 'react-icons/fa'
+import Issuedbooks from "./isseudbooks";
 import {BsFillXCircleFill} from 'react-icons/bs'
 
 
 
 
 export default function Books(){
-    const [isActive, setActive] = useState("false");
+    // const [isActive, setActive] = useState("false");
     const location = useLocation();
     const [email , setEmail]=useState(location.state[0]);
     const [msg, setmsg] = useState('');
     let [arr , setArr] = useState([]);
-    let [issued , setIsseud] = useState([]);
-    let [Totalissued , setTotalisseud] = useState([]);
+    let [Totalissued , setTotalisseud] = useState(Number);
     const [is_render,setIsRender]=useState(false)
     
     
@@ -27,30 +27,32 @@ export default function Books(){
             setIsRender(true)
         })
 
-        axios.get("http://localhost:4000/getTotalIssued")
+        axios.get(`http://localhost:4000/getTotalIssued/${email}`)
         .then((response) => {
-            setArr(response.data.book);
-            setIsRender(true)
+            setTotalisseud(response.data.total);
+            // alert(Totalissued)
         })
 
-
-
-    },[is_render])
+    },[])
 
     
 
     function handleBorrowBook(bookid,bookname,author,available_books){
-        const obj ={
-            email:email,
-            bookid:bookid,
-            bookname:bookname,
-            author:author,
-            available_books:available_books
+        if((Totalissued+1) <= 3){
+            const obj ={
+                email:email,
+                bookid:bookid,
+                bookname:bookname,
+                author:author,
+                available_books:available_books
+            }
+            axios.post("http://localhost:4000/borrowbooks",obj)
+            .then(response=>{
+                alert(response.data.borrowmsg)
+            })
+        }else{
+            alert("you can not issue books! please return first")
         }
-        axios.post("http://localhost:4000/borrowbooks",obj)
-        .then(response=>{
-            alert(response.data.borrowmsg)
-        })
         window.location.href='/studentbooks'
     }
     
@@ -122,44 +124,7 @@ export default function Books(){
                     <br />
 
                     <div className="content">
-                        <div className="tablediv table-responsive" >
-                            <div style={{position:"relative",top:"-10px"}}>
-                                <div id="icon">
-                                    <BsFillXCircleFill style={{margin:"20px"}} onClick={hidden}/>
-                                </div>
-                            </div>
-                            <h5 className="heading">Books Issued </h5>
-                            <div id="book-issued-info">
-                                <table className="table table-bordered" >
-                                <thead>
-                                    <tr>
-                                        <th className="col-xs-1 text-center">BookName</th>
-                                        <th className="col-xs-1 text-center">Author</th>
-                                        <th className="col-xs-1 text-center">issue Date</th>
-                                        <th className="col-xs-1 text-center">return Date</th>
-                                        <th className="col-xs-1 text-center">Fine</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    {issued.length !== 0 ? (
-                                        issued.map((val, index) => {
-                                        return (
-                                            <tr  key={index+1}>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td ></td>
-                                                <td>0</td>
-                                            </tr>
-                                        );
-                                        })
-                                        ) : (
-                                            <p style={{ textAlign: "center" }}> No books issued</p>
-                                        )}
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
+                        <Issuedbooks email={email} />
                     </div>
                 </div>
             </div>
