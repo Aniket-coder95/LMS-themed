@@ -19,7 +19,7 @@ export default function BorrowBooks(){
         <Header />
         <Menu />
         <div className="content-wrapper">
-            <h3 className='card-header'>All Available Books </h3>
+            {/* <h3 className='card-header'>All Available Books </h3> */}
             <section className="content">
                 <Books/>
             </section>

@@ -50,21 +50,15 @@ export default function Books(){
             .then(response=>{
                 alert(response.data.borrowmsg)
             })
+            window.location.href='/studentbooks'
         }else{
             alert("you can not issue books! please return first")
         }
-        window.location.href='/studentbooks'
+        
     }
     
 
-    function hidden(){
-        var x = document.getElementById("book-issued-info");
-        if (x.style.display === "none") {
-            x.style.display = "block";
-        } else {
-            x.style.display = "none";
-        }  
-    }
+    
     function hideme(){
         var x = document.getElementById("book-info");
         if (x.style.display === "none") {
@@ -87,15 +81,15 @@ export default function Books(){
                     </button>
                     
                     <div className="tablediv table-responsive" id="book-info">
-                        {/* <h5 className="heading">Books Available</h5> */}
+                        <h5 className="heading text-primary">All Books Available</h5>
                         <table className="table table-bordered">
                         <thead>
                             <tr>
-                                <th className="col-xs-1 text-center">Sr.no</th>
-                                <th className="col-xs-1 text-center">BookName</th>
-                                <th className="col-xs-1 text-center">Author</th>
-                                <th className="col-xs-1 text-center">Available</th>
-                                <th className="col-xs-1 text-center">Issue</th>
+                                <th className="col-xs-1 text-center text-primary">Sr.no</th>
+                                <th className="col-xs-1 text-center text-primary">BookName</th>
+                                <th className="col-xs-1 text-center text-primary">Author</th>
+                                <th className="col-xs-1 text-center text-primary">Available</th>
+                                <th className="col-xs-1 text-center text-primary">Issue</th>
                             </tr>
                             </thead>
                             <tbody>

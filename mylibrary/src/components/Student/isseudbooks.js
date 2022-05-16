@@ -20,10 +20,9 @@ export default function Issuedbooks(props){
             // setIsRender(true)
             // console
         })
-
-
-
     },[])
+
+    
 
     function hidden(){
         var x = document.getElementById("book-issued-info");
@@ -33,6 +32,26 @@ export default function Issuedbooks(props){
             x.style.display = "none";
         }  
     }
+    const getFine = (return_date) =>{
+        const current_date = new Date().toLocaleDateString();
+        console.log(current_date);
+      
+        const date_array = return_date.split("/");
+        const date_array2 = current_date.split("/");
+      
+        const current_date_day =
+          new Date(date_array2[2], date_array2[1], date_array2[0]).getTime() /
+          (1000 *60 * 60 * 24);
+      
+        //new Date(yyyy,mm,dd)
+        const return_date_day =
+          new Date(date_array[2], date_array[1], date_array[0]).getTime() /
+          (1000 * 60 * 60 * 24);
+      
+        const late = current_date_day - return_date_day;
+        
+        return late < 0 ? 0 : (late * 5)  // * rupees per day
+    }
     return(
         <div>
             <div className="tablediv table-responsive" >
@@ -41,16 +60,16 @@ export default function Issuedbooks(props){
                                     <BsFillXCircleFill style={{margin:"20px"}} onClick={hidden}/>
                                 </div>
                             </div>
-                            <h5 className="heading">Books Issued </h5>
+                            <h5 className="heading text-primary">Books Issued </h5>
                             <div id='book-issued-info'>
                                 <table className="table table-bordered" >
                                 <thead>
                                     <tr>
-                                        <th className="col-xs-1 text-center">BookName</th>
-                                        <th className="col-xs-1 text-center">Author</th>
-                                        <th className="col-xs-1 text-center">issue Date</th>
-                                        <th className="col-xs-1 text-center">return Date</th>
-                                        <th className="col-xs-1 text-center">Fine</th>
+                                        <th className="col-xs-1 text-center text-primary">BookName</th>
+                                        <th className="col-xs-1 text-center text-primary">Author</th>
+                                        <th className="col-xs-1 text-center text-primary">issue Date</th>
+                                        <th className="col-xs-1 text-center text-primary">return Date</th>
+                                        <th className="col-xs-1 text-center text-primary">Fine (Rs.)</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -60,9 +79,9 @@ export default function Issuedbooks(props){
                                             <tr  key={index+1}>
                                                 <td className="col-xs-1 text-center">{val.bookname}</td>
                                                 <td className="col-xs-1 text-center">{val.author}</td>
-                                                <td className="col-xs-1 text-center">{val.date}</td>
-                                                <td className="col-xs-1 text-center">{val.returndate}</td>
-                                                <td className="col-xs-1 text-center">0</td>
+                                                <td className="col-xs-1 text-center text-success">{val.date}</td>
+                                                <td className="col-xs-1 text-center text-info">{val.returndate}</td>
+                                                <td className="col-xs-1 text-center text-danger">Rs. {getFine(val.returndate)}</td>
                                             </tr>
                                         );
                                         })

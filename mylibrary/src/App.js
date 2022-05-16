@@ -24,7 +24,7 @@ import Books from './components/Student/books'
 import ForegetPassword from './components/ForgetPassword/ForgetPassword';
 import LibrarianAddBooks from './components/LIBRARIAN/LibrarianAddBooks';
 import AddNewBooks from './components/LIBRARIAN/AddNewBooks';
-  import Issuedbooks from './components/Student/isseudbooks';
+  // import Issuedbooks from './components/Student/isseudbooks';
 
 
 
@@ -35,7 +35,6 @@ function App()
   return (
     <>
       <Routes>
-        <Route path='/issuedbooks' element={<Issuedbooks/>} /> 
       <Route path='/addnewbooks' element={<AddNewBooks/>} /> 
       <Route path='/books' element={<Books/>} /> 
       <Route path='/librarianaddbooks' element={<LibrarianAddBooks/>} /> 
@@ -59,6 +58,7 @@ function App()
       <Route exact path='/adminregister' element={<AdminRegister/>} />
       <Route exact path='/allstudents' element={<AllStudents/>} />
       <Route exact path='/alllibrarians' element={<AllLibrarians/>} />
+      {/* <Route path='/issuedbooks' element={<Issuedbooks/>} />  */}
       </Routes>
     </>
   );
