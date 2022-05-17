@@ -1,10 +1,12 @@
 import React from 'react'
+import { Line } from "react-chartjs-2";
 
 
-export default function Test(){
-    return(
-        <div>
-        fjfdvfdkj
-        </div>
-    )
-}
+
+const LineChart = () => (
+  <>
+    
+  </>
+)
+
+export default LineChart
