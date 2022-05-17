@@ -76,7 +76,7 @@ export default function LibrarianDashboard(){
         document.getElementById("updatebook-box").style.display = "none"
         setTimeout(function(){
             window.location.href='/librarianaddbooks'
-        },3000)
+        },1500)
         
         // console.log(obj)
     }
@@ -109,6 +109,8 @@ export default function LibrarianDashboard(){
                                 <th className="col-xs-1 text-center">Sr.no</th>
                                 <th className="col-xs-1 text-center">BookName</th>
                                 <th className="col-xs-1 text-center">Author</th>
+                                <th className="col-xs-1 text-center">Total Books</th>
+                                <th className="col-xs-1 text-center">Available Books</th>
                                 <th className="col-xs-1 text-center">remove</th>
                                 <th className="col-xs-1 text-center">update</th>
                             </tr>
@@ -121,6 +123,8 @@ export default function LibrarianDashboard(){
                                         <td className="col-xs-1 text-center">{index+1}</td>
                                         <td className="col-xs-1 text-center" > {val.bookname}</td>
                                         <td className="col-xs-1 text-center">{val.author}</td>
+                                        <td className="col-xs-1 text-center">{val.total_books}</td>
+                                        <td className="col-xs-1 text-center">{val.available_books}</td>
                                         <td className="col-xs-1 text-center" style={{color: "#8b1919"}} ><BsFillArchiveFill style={{cursor: "pointer"}} onClick={()=>{handleremovebook(val.bookid)}} /></td>
                                         <td className="col-xs-1 text-center" id="c" style={{color: "#445e11"}}><BsFillPenFill style={{cursor: "pointer"}} onClick={()=>{handleupdatebook(val.bookid)}} />
                                         
