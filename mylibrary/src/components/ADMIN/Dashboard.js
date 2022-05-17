@@ -3,7 +3,7 @@ import { useEffect } from 'react'
 import axios from 'axios'
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { Line , Bar} from "react-chartjs-2";
+import { Line , Bar ,Pie} from "react-chartjs-2";
 import { useLocation } from 'react-router-dom';
 
 
@@ -13,9 +13,14 @@ export default function Dashboard () {
   const [T_librarians , setT_librarians] = useState(Number)
   const [T_students, setT_students] = useState(Number)
   const [T_books, setT_books] = useState(Number)
+  let [arr , setArr] = useState([]);
   // const [email , setEmail] = useState()
 
   useEffect(()=>{
+    axios.get("http://localhost:4000/booklist")
+        .then((response) => {
+            setArr(response.data.book);
+        })
     axios.get('http://localhost:4000/getAlluser')
     .then(Response=>{
       // alert(Response.data.users)
@@ -36,20 +41,48 @@ export default function Dashboard () {
       // alert(Response.data.users)
       setT_books(Response.data.books)
     })
-  })
-
+    
+  },[])
+  // console.log(arr)
+  function Quantity(){ 
+    let x = [];
+    arr.map((val, index) => {
+      x[index] = val.available_books
+    })
+    return x
+  }
+  function label(){ 
+    let x = [];
+    arr.map((val, index) => {
+      x[index] = val.bookname
+    })
+    return x
+  }
+  
   const data = {
-    labels: ['1', '2', '3', '4', '5', '6','7','8','9','10'],
+    labels: label(),
     datasets: [
       {
-        label: '# of Votes',
-        data: [12, 19, 3, 5, 2, 3],
-        fill: false,
-        backgroundColor:'grey',
-        borderColor: 'red',
+        label: 'Rainfall',
+        backgroundColor: [
+          '#B21F00',
+          '#C9DE00',
+          '#2FDE00',
+          '#00A6B4',
+          '#6800B4',
+          '#B21F00',
+          '#C9DE00',
+          '#2FDE00',
+          '#00A6B4',
+        ],
+        // hoverBackgroundColor: [
+        // '#501800',
+        // ],
+        data: Quantity()
       },
     ],
   }
+  
   
   const options = {
     scales: {
@@ -94,7 +127,7 @@ export default function Dashboard () {
       <div>
         <div className="content-wrapper">
           <section className="content">
-            <div className="container-fluid">
+            <div className="container-fluid" style={{padding:"5px"}}>
               <div className="row">
               <div className="col-lg-3 col-6">
                   <div className="small-box bg-success">
@@ -170,26 +203,38 @@ export default function Dashboard () {
               <div className='row'>
                 <div className='col-lg-6 connectedSortable'>
                   <section className='card '>
-                    <div className='header'>
-                      <h1 className='title'>Chart-1</h1>
-                    </div>
-                    <Bar data={data} options={options} />
+                    <Pie data={data}
+                      options={{
+                        title:{
+                          display:true,
+                          text:'Books Availability in  Library',
+                          fontSize:20
+                        },
+                        legend:{
+                          display:true,
+                          position:'left',
+                        }
+                      }} />
                   </section>
                 </div>
 
                 <div className='col-lg-6 connectedSortable'>
                   <section className='card '>
-                    <div className='header'>
-                      <h1 className='title'>Chart-2</h1>
-                    </div>
                     <Line data={data1} options={options1} />
                   </section>
                 </div>
+
+                <div className='col-lg-6 connectedSortable'>
+                  <section className='card '>
+                    {/* <Line data={data1} options={options1} /> */}
+                  </section>
+                </div>
+
               </div>
             </div>
             
           </section>
-    </div>
+        </div>
       </div>
     )
   // }
