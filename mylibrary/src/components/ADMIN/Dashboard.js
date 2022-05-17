@@ -3,7 +3,7 @@ import { useEffect } from 'react'
 import axios from 'axios'
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { Line , Bar ,Pie} from "react-chartjs-2";
+import { Line , Bar ,Pie ,Doughnut} from "react-chartjs-2";
 import { useLocation } from 'react-router-dom';
 
 
@@ -65,20 +65,26 @@ export default function Dashboard () {
       {
         label: 'Rainfall',
         backgroundColor: [
-          '#B21F00',
-          '#C9DE00',
-          '#2FDE00',
-          '#00A6B4',
-          '#6800B4',
-          '#B21F00',
-          '#C9DE00',
-          '#2FDE00',
-          '#00A6B4',
+          '#B21F00','#C9DE00','#2FDE00','#00A6B4','#6800B4','#B21F00','#C9DE00','#2FDE00','#00A6B4','#6800B4',
+          '#B21F00','#C9DE00','#2FDE00','#00A6B4','#00A6B4','#B21F00','#C9DE00','#2FDE00','#00A6B4','#00A6B4','#6800B4','#B21F00','#C9DE00',
         ],
         // hoverBackgroundColor: [
         // '#501800',
         // ],
         data: Quantity()
+      },
+    ],
+  }
+
+  const data2 = {
+    labels: ['All users', 'Librarians', 'Students', 'Admins'],
+    datasets: [
+      {
+        label: 'Rainfall',
+        backgroundColor: [
+          '#00A6B4', '#6800B4','#B21F00','#C9DE00',
+        ],
+        data:[T_users,T_librarians,T_students,(T_users-T_librarians-T_students)],
       },
     ],
   }
@@ -96,11 +102,11 @@ export default function Dashboard () {
     },
   }
   const data1 = {
-    labels: ['1', '2', '3', '4', '5', '6','7','8','9','10'],
+    labels: ['All users', 'Librarians', 'Students', 'Admins'],
     datasets: [
       {
         label: '# of Votes',
-        data: [12, 19, 3, 5, 2, 3],
+        data: [T_users,T_librarians,T_students,(T_users-T_librarians-T_students)],
         fill: false,
         backgroundColor:'grey',
         borderColor: 'red',
@@ -108,17 +114,6 @@ export default function Dashboard () {
     ],
   }
   
-  const options1 = {
-    scales: {
-      yAxes: [
-        {
-          ticks: {
-            beginAtZero: true,
-          },
-        },
-      ],
-    },
-  }
   
 
     
@@ -219,15 +214,34 @@ export default function Dashboard () {
                 </div>
 
                 <div className='col-lg-6 connectedSortable'>
-                  <section className='card '>
-                    <Line data={data1} options={options1} />
-                  </section>
+                <div className='row'>
+                  <div className='col-lg-6 connectedSortable'>
+                    <section className='card '>
+                      <Bar data={data1} options={options} />
+                    </section>
+                  </div>
+                  <div className='col-lg-6 connectedSortable'>
+                    <section className='card '>
+                      <Line data={data1} options={options} />
+                    </section>
+                  </div>
+                  
+                  <div className='col-lg-6 connectedSortable'>
+                    <section className='card '>
+                      <Line data={data1} options={options} />
+                    </section>
+                  </div>
+                  <div className='col-lg-6 connectedSortable'>
+                    <section className='card '>
+                      <Doughnut data={data2} options={{
+                        legend:{
+                          display:true,
+                          position:'right',
+                        }
+                      }} />
+                    </section>
+                  </div>
                 </div>
-
-                <div className='col-lg-6 connectedSortable'>
-                  <section className='card '>
-                    {/* <Line data={data1} options={options1} /> */}
-                  </section>
                 </div>
 
               </div>
