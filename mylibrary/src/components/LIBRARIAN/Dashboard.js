@@ -14,6 +14,7 @@ export default function Dashboard () {
   const [email , setEmail] = useState(getdata.state[0])
   const [T_books, setT_books] = useState(Number)
   const [T_librarians , setT_librarians] = useState(Number)
+  const [T_students, setT_students] = useState(Number)
   const role = getdata.state[1];
   const name = getdata.state[2];
 
@@ -23,13 +24,17 @@ export default function Dashboard () {
       // alert(Response.data.users)
       setT_books(Response.data.books)
     })
-
     axios.get('http://localhost:4000/getAllLibrarian')
       .then(Response=>{
         // alert(Response.data.users)
         setT_librarians(Response.data.users)
       })
 
+      axios.get('http://localhost:4000/getAllStudent')
+      .then(Response=>{
+        // alert(Response.data.users)
+        setT_students(Response.data.users)
+      })
   })
 
   function changePassword(e){
@@ -90,7 +95,13 @@ export default function Dashboard () {
                     <div className="icon">
                       <i className="ion ion-bag" />
                     </div>
-                    <a  className="small-box-footer">More info <i className="fas fa-arrow-circle-right" /></a>
+                    <a  className="small-box-footer">
+                    <Link to={`/librarianaddbooks`} 
+                        state={[getdata.state[0],getdata.state[1],getdata.state[2]]}>
+                          More info
+                        <i className="fas fa-arrow-circle-right" />
+                    </Link>
+                      </a>
                   </div>
                 </div>
 
@@ -104,12 +115,7 @@ export default function Dashboard () {
                       <i className="ion ion-person-add" />
                     </div>
                     <a className="small-box-footer">
-                      
-                    <Link to={`/librarianaddbooks`} 
-                        state={[getdata.state[0],getdata.state[1],getdata.state[2]]}>
-                          More info
-                        <i className="fas fa-arrow-circle-right" />
-                    </Link>
+                      <i className="fas fa-arrow-circle-up" />
                      </a>
                   </div>
                 </div>
@@ -117,13 +123,15 @@ export default function Dashboard () {
                 <div className="col-lg-4 col-4">
                   <div className="small-box bg-warning">
                     <div className="inner">
-                      <h3>T_students</h3>
+                      <h3>{T_students}</h3>
                       <p style={{color:"black"}}>Students</p>
                     </div>
                     <div className="icon">
                       <i className="ion ion-person-add" />
                     </div>
-                    <a  className="small-box-footer">More info <i className="fas fa-arrow-circle-right" /></a>
+                    <a  className="small-box-footer">
+                      <i className="fas fa-arrow-circle-up" />
+                      </a>
                   </div>
                 </div>
                 

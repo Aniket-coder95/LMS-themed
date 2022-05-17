@@ -58,8 +58,8 @@ export default function AddNewBooks(){
                         </div>
                     </div>
                     <div className='d-flex justify-content-center'>
-                        <div className="form-group w-50">
-                            <button className="btn btn-outline-success" onClick={addbookFun}>Add</button>
+                        <div className="form-group w-50 p-2">
+                            <button className="btn btn-outline-dark" onClick={addbookFun}>Add</button>
                         </div>
                         <br />
                     </div>
