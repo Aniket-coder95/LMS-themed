@@ -81,9 +81,12 @@ export default function BooksAvailable(){
                         <table className="table table-bordered">
                         <thead>
                             <tr>
-                                <th className="col-xs-1 text-center">Sr.no</th>
-                                <th className="col-xs-1 text-center">BookName</th>
-                                <th className="col-xs-1 text-center">Author</th>
+                                <th className="col-xs-1 text-center text-info">Sr.no</th>
+                                <th className="col-xs-1 text-center text-info">Bookid</th>
+                                <th className="col-xs-1 text-center text-info">BookName</th>
+                                <th className="col-xs-1 text-center text-info">Author</th>
+                                <th className="col-xs-1 text-center text-info">Total Books</th>
+                                <th className="col-xs-1 text-center text-info">Available Books</th>
                                 {/* <th className="col-xs-1 text-center">Borrow</th> */}
                             </tr>
                             </thead>
@@ -92,9 +95,12 @@ export default function BooksAvailable(){
                                 arr.map((val, index) => {
                                 return (
                                     <tr  key={index+1}>
-                                        <td className="col-xs-1 text-center">{index+1}</td>
-                                        <td className="col-xs-1 text-center" > {val.bookname}</td>
-                                        <td className="col-xs-1 text-center">{val.author}</td>
+                                        <td className="col-xs-1 text-center text-dark">{index+1}</td>
+                                        <td className="col-xs-1 text-center text-blue">{val.bookid}</td>
+                                        <td className="col-xs-1 text-center text-dark" > {val.bookname}</td>
+                                        <td className="col-xs-1 text-center text-green">{val.author}</td>
+                                        <td className="col-xs-1 text-center text-blue">{val.total_books}</td>
+                                        <td className="col-xs-1 text-center"><a className={val.available_books != 0? "text-success":"text-danger"}>{val.available_books}</a></td>
                                         {/* <td className="col-xs-1 text-center" style={{color: "#8b1919"}} ><FaCartArrowDown style={{cursor: "pointer"}} onClick={()=>{handleBorrowBook(val.bookid,val.bookname,val.author)}} /></td> */}
                                     </tr>
                                 );

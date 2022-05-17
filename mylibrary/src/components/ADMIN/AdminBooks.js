@@ -11,7 +11,7 @@ export default function AdminBooks(){
         <Menu />
         <div>
         <div className="content-wrapper">
-            <h3 className='card-header'>All Available Books </h3>
+            <h3 className='card-header'>Books and Details </h3>
             <section className="content">
                 <AllBooks />
             </section>
