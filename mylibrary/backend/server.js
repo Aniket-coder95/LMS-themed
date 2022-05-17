@@ -190,9 +190,9 @@ app.post('/updatebooks', async(req,res)=>{
   const bookid = req.body.bookid
   const changebookname = req.body.changebookname
   const changeauthor =req.body.changeauthor
-  await registerbooks.updateOne({bookid},{$set:{bookname:changebookname,author:changeauthor}})
-  
-  console.log("updated")
+  const available_books = req.body.availableBooks
+  await registerbooks.updateOne({bookid,isblocked:false},{$set:{bookname:changebookname,author:changeauthor,available_books:available_books}})
+  console.log("updated") 
 })
 
 

@@ -16,6 +16,7 @@ export default function LibrarianDashboard(){
     let [arr , setArr] = useState([]);
     const [bookid , setBookid] = useState();
     const [is_render,setIsRender]=useState(false)
+    const [total_books , setTotal_books]=useState();
     // let bookid1='';
     
      
@@ -57,16 +58,17 @@ export default function LibrarianDashboard(){
         x.style.display = "none";  
     }
     function updatebookFun(){
-        console.log(bookid)
-        if(updatebook == '' || updateauthor ==''){
+        // console.log(bookid)
+        if(!updatebook || !updateauthor || !total_books){
            return alert('fill both entries')
         }
-        setmsg("Your Book is updated successfull")
         const obj = {
             bookid:bookid,
             changebookname:updatebook,
-            changeauthor:updateauthor
+            changeauthor:updateauthor,
+            availableBooks:total_books
         }
+        setmsg("Your Book is updated successfully")
         axios.post('http://localhost:4000/updatebooks',obj)
         .then((response) => {
             
@@ -146,15 +148,25 @@ export default function LibrarianDashboard(){
                             </div>
                         </div>
                         <h5 className="heading">Update Here</h5>
-                        <div className="form-group">
-                            <label htmlFor="form3Example1ab">Book Name</label>
-                            <input type="text" placeholder="Enter book name" className="form-control" value={updatebook} onChange={(e)=>setUpdatebook(e.target.value)} />
+                        <div className='d-flex justify-content-center'>
+                            <div className="form-group w-50">
+                                <label htmlFor="form3Example1ab">Book Name</label>
+                                <input type="text" placeholder="Enter book name" className="form-control" value={updatebook} onChange={(e)=>setUpdatebook(e.target.value)} />
+                            </div>
                         </div>
-                        <div className="form-group">
-                            <label htmlFor="form3Example2ab">Author</label>
-                            <input type="text" placeholder="Enter author" className="form-control" value={updateauthor} onChange={(e)=>setUpdateauthor(e.target.value)} />
+                        <div className='d-flex justify-content-center'>
+                            <div className="form-group w-50">
+                                <label htmlFor="form3Example2ab">Author</label>
+                                <input type="text" placeholder="Enter author" className="form-control" value={updateauthor} onChange={(e)=>setUpdateauthor(e.target.value)} />
+                            </div>
                         </div>
-                        <div className="form-group">
+                        <div className='d-flex justify-content-center'>
+                        <div className="form-group w-50">
+                            <label htmlFor="form3Example4cg">Total_Books</label>
+                            <input type="number" min="1" placeholder="Enter total books" className="form-control" value={total_books} onChange={(e)=>setTotal_books(e.target.value)} />
+                        </div>
+                        </div >
+                        <div className="form-group d-flex justify-content-center" style={{margin:"10px 0 0 30px"}}>
                             <button className="btn btn-outline-success" onClick={updatebookFun}>Update</button>
                         </div>
                     </div>

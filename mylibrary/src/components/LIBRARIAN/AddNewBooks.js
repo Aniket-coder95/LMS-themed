@@ -40,30 +40,31 @@ export default function AddNewBooks(){
                 <div className="addBooks">
 
                     <div className='d-flex justify-content-center'>
-                    <div className="form-group w-50">
-                        <label htmlFor="form3Example4cg">Book Name</label>
-                        <input type="text" placeholder="Enter book name" className="form-control" value={bookname} onChange={(e)=>setBookname(e.target.value)} />
-                    </div>
-                    </div>
-                    <div className='d-flex justify-content-center'>
-                    <div className="form-group w-50">
-                        <label htmlFor="form3Example4cg">Author</label>
-                        <input type="text" placeholder="Enter author name" className="form-control" value={authorname} onChange={(e)=>setAuthorname(e.target.value)} />
-                    </div>
+                        <div className="form-group w-50">
+                            <label htmlFor="form3Example4cg">Book Name</label>
+                            <input type="text" placeholder="Enter book name" className="form-control" value={bookname} onChange={(e)=>setBookname(e.target.value)} />
+                        </div>
                     </div>
                     <div className='d-flex justify-content-center'>
-                    <div className="form-group w-50">
-                        <label htmlFor="form3Example4cg">Total_Books</label>
-                        <input type="number" min="1" placeholder="Enter total books" className="form-control" value={total_books} onChange={(e)=>setTotal_books(e.target.value)} />
+                        <div className="form-group w-50">
+                            <label htmlFor="form3Example4cg">Author</label>
+                            <input type="text" placeholder="Enter author name" className="form-control" value={authorname} onChange={(e)=>setAuthorname(e.target.value)} />
+                        </div>
                     </div>
+                    <div className='d-flex justify-content-center'>
+                        <div className="form-group w-50">
+                            <label htmlFor="form3Example4cg">Total_Books</label>
+                            <input type="number" min="1" placeholder="Enter total books" className="form-control" value={total_books} onChange={(e)=>setTotal_books(e.target.value)} />
+                        </div>
                     </div>
                     <div className='d-flex justify-content-center'>
                         <div className="form-group w-50">
                             <button className="btn btn-outline-success" onClick={addbookFun}>Add</button>
                         </div>
-                        <div>
-                            {bookerrmsg}
-                        </div>
+                        <br />
+                    </div>
+                    <div className=''>
+                        {bookerrmsg}
                     </div>
                 </div>
                             
