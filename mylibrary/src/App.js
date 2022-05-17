@@ -2,7 +2,6 @@ import { Routes, Route} from 'react-router-dom';
 
 import './App.css';
 import Home from "./components/Home";
-import BookList from './components/BookList/BookList';
 import LibrarianDashboard from './components/LIBRARIAN/Librarian';
 import StudentDashboard from './components/STUDENT/Student';
 import AdminDashboard from './components/ADMIN/Admin';
@@ -47,7 +46,6 @@ function App()
       <Route path='/userdetailsdemo' element={<GetuserDetails email="student@gmail.com"/>} />
       <Route path='/demo' element={<Demo/>} />
       <Route path='/' element={<Home/>} />
-      <Route exact path='/booklist' element={<BookList/>} />
       <Route exact path='/admindashboard' element={<AdminDashboard/>} />
       <Route exact path='/librariandashboard' element={<LibrarianDashboard/>} />
       <Route exact path='/studentdashboard' element={<StudentDashboard/>} />

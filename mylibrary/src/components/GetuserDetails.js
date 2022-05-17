@@ -4,7 +4,6 @@ import { useEffect } from "react";
 import axios from "axios";
 import React,{useState} from 'react'
 import { FaEdit } from "react-icons/fa";
-import { Link } from "react-router-dom";
 
 export default function GetuserDetails(props){
     const [isActive, setActive] = useState("false");

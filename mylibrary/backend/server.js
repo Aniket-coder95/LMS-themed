@@ -342,7 +342,7 @@ app.get('/getIssedBooks/:user',async(req,res)=>{
 
 app.get('/totalFine/:email',async(req,res)=>{
   const {email} = req.params
-    console.log(email)
+    // console.log(email)
     const x =await Borrowedbook.find({email:email})
     var totalfine =''
     if(!x){
@@ -388,18 +388,18 @@ app.post('/returnbook',async(req,res)=>{
  
 
     console.log( email,bookid,issueDate,fine , returndate)
-})
+},[])
 
 
 
-
+ 
 
 
 app.listen(port, ()=>{
   
     console.log(`listening to port no ${port}`);
 }); 
-
+ 
 
 
 
