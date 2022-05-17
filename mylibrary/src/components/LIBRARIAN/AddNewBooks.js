@@ -37,7 +37,7 @@ export default function AddNewBooks(){
         <div className='wrapper'>
             <div className="addNewBooks" id="addNewBooks">
                 {/* <h3 className="heading">Add Book Here</h3>  */}
-                <div className="addBooks">
+                <div className="addBooks" style={{height:"350px"}}>
 
                     <div className='d-flex justify-content-center'>
                         <div className="form-group w-50">

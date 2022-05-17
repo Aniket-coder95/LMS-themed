@@ -1,11 +1,11 @@
 import React from 'react'
-import { Line } from "react-chartjs-2";
+import BookChart from '../OtherComponents/BookChart'
 
 
 
 const LineChart = () => (
   <>
-    
+    <BookChart />
   </>
 )
 

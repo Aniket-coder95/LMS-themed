@@ -1,4 +1,5 @@
 import React from 'react'
+import BookChart from '../OtherComponents/BookChart'
 import { useLocation } from 'react-router-dom';
 import AddNewBooks from './AddNewBooks'
 import { useState } from 'react';
@@ -137,27 +138,45 @@ export default function Dashboard () {
                 
               </div>
             </div>
-            <div className="container-fluid">
-              <section className="col-lg-5 connectedSortable">
-                <div className="card bg-gradient-primary">
-                  <div className="card-header border-0">
-                    <h3 className="card-title">
-                      <i className="fas fa-map-marker-alt mr-1" />
-                      Add Books Here
-                    </h3>
-                    <div className="card-tools">
-                      <button type="button" className="btn btn-primary btn-sm" data-card-widget="collapse" title="Collapse">
-                        <i className="fas fa-minus" />
-                      </button>
+            
+              <div className='row'>
+                <section className="col-lg-6 " >
+                  <div className="card bg-gradient-primary">
+                    <div className="card-header border-0">
+                      <h3 className="card-title">
+                        <i className="fas fa-map-marker-alt mr-1" />
+                        Add Books Here
+                      </h3>
+                      <div className="card-tools">
+                        <button type="button" className="btn btn-primary btn-sm" data-card-widget="collapse" title="Collapse">
+                          <i className="fas fa-minus" />
+                        </button>
+                      </div>
+                    </div>
+                    <div className="card-body">
+                      <AddNewBooks />
+                    <div id="world-map" />
                     </div>
                   </div>
-                  <div className="card-body">
-                    <AddNewBooks />
-                  <div id="world-map" />
+                </section>
+
+                <section className="col-lg-6 " >
+                  <div className="card bg-gradient-primary">
+                    <div className="card-header border-0">
+                      <div className="card-tools">
+                        <button type="button" className="btn btn-primary btn-sm" data-card-widget="collapse" title="Collapse">
+                          <i className="fas fa-minus" />
+                        </button>
+                      </div>
+                    </div>
+                    <div className="card-body">
+                      <BookChart />
+                    <div id="world-map" />
+                    </div>
                   </div>
-                </div>
-              </section>
-            </div>
+                </section>
+              </div>
+              
         </section>
       </div>
     </div>

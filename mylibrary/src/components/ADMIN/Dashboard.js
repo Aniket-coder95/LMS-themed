@@ -7,6 +7,7 @@ import { Line , Bar ,Pie ,Doughnut} from "react-chartjs-2";
 import { useLocation } from 'react-router-dom';
 
 
+
 export default function Dashboard () {
   const getdata = useLocation();
   const [T_users , setT_users] = useState(Number)
