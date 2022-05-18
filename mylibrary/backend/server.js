@@ -108,6 +108,22 @@ app.post("/signin",async(req,res)=> {
     
 });
 
+app.post('/changePassword',async(req,res)=>{
+  const email = req.body.email
+  const getpass = await Signup.findOne({email:email,isblocked:false})
+  const password = checkPass(req.body.C_password, getpass.password)
+  const New_password = encPassword(req.body.New_password)
+  // console.log(New_password)
+  if(password){
+    const is_updated = await Signup.updateOne({email:email,isblocked:false},{$set:{password:New_password}})
+    if(!is_updated.modifiedCount){
+      res.json({msg:"enter correct password"})
+    }else{
+      res.json({msg:"password changed"})
+    }
+  }
+})
+
 
 app.post("/Admin",async(req,res)=>{
   const user = req.body.email;
@@ -293,33 +309,20 @@ app.post('/totalborrowed',async(req,res)=>{
 app.post('/forgetpassword',async(req,res)=>{
   const email = req.body.email 
   const contact = req.body.contact
-
-  const userexist = await Signup.findOne({email:email , contact:contact})
+  const userexist = await Signup.findOne({email:email,isblocked:false,contact:contact})
   if(!userexist){
     res.json({msg:"Not find any user"})
   }else{
     // console.log()
-    ResetPassword(userexist.email,userexist.password)
+    const password = randPass();
+    await Signup.updateOne({email:email,contact:contact,isblocked:false},{$set:{password:encPassword(password)}})
+    ResetPassword(userexist.email,password)
     res.json({msg:"Credencials sent to your mail"})
   }
 })
 
 
-app.post('/changePassword',async(req,res)=>{
-  const email = req.body.email
-  const getpass = await Signup.findOne({email:email,isblocked:false})
-  const password = checkPass(req.body.C_password, getpass.password)
-  const New_password = encPassword(req.body.New_password)
-  // console.log(New_password)
-  if(password){
-    const is_updated = await Signup.updateOne({email:email,isblocked:false},{$set:{password:New_password}})
-    if(!is_updated.modifiedCount){
-      res.json({msg:"enter correct password"})
-    }else{
-      res.json({msg:"password changed"})
-    }
-  }
-})
+
 
 
 app.get('/getTotalIssued/:user',async(req,res)=>{
