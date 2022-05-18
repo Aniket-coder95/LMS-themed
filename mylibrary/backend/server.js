@@ -12,11 +12,19 @@ const sendmail = require('./HandleMail')
 const randPass = require('./Generatepassword')
 const ResetPassword = require('./Resetpasswordmail')
 const uniqueId = require('./uniqueId') 
+const encPassword = require('./password/encrypt')
+const checkPass = require('./password/checkpassword')
+
   
 var cors = require('cors');
 app.use(cors());
 app.use(express.json());
 app.use(cookieParser());
+
+
+// const asdf = Encpassword("kumar")
+// console.log(asdf) 
+// console.log(checkPass("kumar",asdf))
 // console.log(uniqueId())
 // console.log(randPass())
 // sendmail("kum.testo7@gmail.com", "Student", "kumar aniket", "random_password")
@@ -47,7 +55,8 @@ app.post('/signup', async(req,res)=>{
       }
       return random_studentid;
     } 
-    const password = randPass()
+    const pass = randPass()
+    const password = encPassword(pass)
     var obj =[
         {
           studentid:generateID(),
@@ -62,7 +71,7 @@ app.post('/signup', async(req,res)=>{
       await Signup.insertMany(obj,function(err,res){
       if(err)throw err;
           console.log("signed-up"); 
-          sendmail(req.body.email,req.body.role,req.body.name,password)
+          sendmail(req.body.email,req.body.role,req.body.name,pass)
 
       })
   
@@ -72,9 +81,9 @@ app.post('/signup', async(req,res)=>{
 app.post("/signin",async(req,res)=> {
       const email = req.body.email;
       const password = req.body.password;
-      const user = await Signup.findOne({email ,password,isblocked:false})
+      const user = await Signup.findOne({email,isblocked:false})
 
-      if(!user){
+      if(!checkPass(password,user.password)){
         // console.log("Email or Password not found in database")
         res.json({ msg : "Email or Password not found in database"})
       }else{
@@ -92,8 +101,6 @@ app.post("/signin",async(req,res)=> {
         //   }
         //   else
         //   {
-             
-
         //   }
         // });
         
@@ -300,16 +307,17 @@ app.post('/forgetpassword',async(req,res)=>{
 
 app.post('/changePassword',async(req,res)=>{
   const email = req.body.email
-  const password = req.body.C_password
-  const New_password = req.body.New_password
+  const getpass = await Signup.findOne({email:email,isblocked:false})
+  const password = checkPass(req.body.C_password, getpass.password)
+  const New_password = encPassword(req.body.New_password)
   // console.log(New_password)
-  const is_updated=await Signup.updateOne({email:email, password:password ,isblocked:false},{$set:{password:New_password}})
-  // console.log(email , password , New_password);
-  // console.log(is_updated);
-  if(!is_updated.modifiedCount){
-    res.json({msg:"enter correct password"})
-  }else{
-    res.json({msg:"password changed"})
+  if(password){
+    const is_updated = await Signup.updateOne({email:email,isblocked:false},{$set:{password:New_password}})
+    if(!is_updated.modifiedCount){
+      res.json({msg:"enter correct password"})
+    }else{
+      res.json({msg:"password changed"})
+    }
   }
 })
 

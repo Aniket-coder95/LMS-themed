@@ -66,7 +66,7 @@ export default function Dashboard() {
         // ],
         data:[1,2,3,4,5],
       },
-    ], 
+    ],  
   }
   const data1 = {
     labels: [1,2,3,4,5,6,7],
