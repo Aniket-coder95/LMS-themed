@@ -31,8 +31,9 @@ app.use(cookieParser());
 // ResetPassword("kum.testo7@gmail.com","asdfgd")
 
 const mongoose = require("mongoose");
-mongoose.connect("mongodb://localhost:27017/testo7",{useNewUrlParser:true})
-// .then(() => console.log("connection successfull ...."))
+// mongoose.connect("mongodb://localhost:27017/testo7",{useNewUrlParser:true})  //mongodb compass
+mongoose.connect("mongodb+srv://SPAN-BLR-1472:myFfgy640W9qni6i@cluster0.7qi8y.mongodb.net/testo7?retryWrites=true&w=majority") //mongodbAtlas
+.then(() => console.log("connection successfull ...."))
 .catch((err) => console.log(err));
 
 const Signup = require('../backend/schema/signup')
