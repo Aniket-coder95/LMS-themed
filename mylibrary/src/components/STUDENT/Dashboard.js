@@ -15,6 +15,7 @@ export default function Dashboard() {
   const [T_borrowed, setT_borrowed] = useState(Number)
   const [T_fine, setT_fine] = useState(Number)
   const [borrowArr , setBorrowArr] = useState([])
+  const [T_fine_details , setT_fine_details] = useState([])
   
 
   useEffect(()=>{
@@ -28,7 +29,6 @@ export default function Dashboard() {
     .catch(e=>{})
     axios.get('http://localhost:4000/getAllBooks')
     .then(Response=>{
-      // alert(Response.data.users)
       setT_books(Response.data.books)
     })
     axios.get(`http://localhost:4000/totalFine/${email}`)
@@ -36,19 +36,28 @@ export default function Dashboard() {
       setT_fine(response.data.totalfine)
     })
     .catch(e=>{})
-    
-  })
 
-  function borrowdata(){ 
+    axios.get(`http://localhost:4000/getFinedetails/${email}`)
+    .then(response => {
+      if(!response.data.details){
+        return;
+      }
+      setT_fine_details(response.data.details)
+    })
+    .catch(e=>{})
+    
+  },[T_books])
+
+  function borrowLabel(){ 
     let x = [];
-    borrowArr.map((val, index) => {
+    T_fine_details.map((val, index) => {
       x[index] = val.bookname
     })
     return x
   }
   function borrowdata(){ 
     let x = [];
-    borrowArr.map((val, index) => {
+    T_fine_details.map((val, index) => {
       x[index] = val.fine
     })
     return x
@@ -56,7 +65,7 @@ export default function Dashboard() {
   
   
   const data = {
-    labels: [1,2,3,4,5],
+    labels: borrowLabel(),
     datasets: [
       {
         label: 'Rainfall',
@@ -64,7 +73,7 @@ export default function Dashboard() {
         // hoverBackgroundColor: [
         // '#501800',
         // ],
-        data:[1,2,3,4,5],
+        data:borrowdata(),
       },
     ],  
   }
@@ -114,6 +123,7 @@ export default function Dashboard() {
     }
     const obj ={email:email , C_password:C_password , New_password:New_password}
     axios.post('http://localhost:4000/changePassword',obj)
+    .then(response=>{alert(response.data.msg)})
     .catch(e=>{console.log("error in change password")})
   }
   function hideme(){

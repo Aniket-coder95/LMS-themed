@@ -44,13 +44,10 @@ export default function Dashboard () {
       return alert("Enter password")
     }
     const obj ={email:email , C_password:C_password , New_password:New_password}
-    console.log(obj)
+    // console.log(obj)
     axios.post('http://localhost:4000/changePassword',obj)
-    .then(Response=>{
-      console.log(Response.data);
-      alert(Response.data.msg)
-    })
-    window.location.href='/librariandashboard'
+    .then(response=>{alert(response.data.msg)})
+    .catch(e=>{console.log("error in change password")})
   }
 
   function hideme(){

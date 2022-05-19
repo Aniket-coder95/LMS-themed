@@ -3,12 +3,16 @@ import { Link} from "react-router-dom";
 import React, { useState } from "react";
 import validator from 'validator';
 import axios from 'axios';
-// import { Navigate } from "react-router-dom";
+import { useEffect } from "react";
 import {useNavigate} from 'react-router-dom'
 
 
 
  export default function SignIn(){
+    function preback(){window.history.forward()}
+    setTimeout(preback(),0)
+    window.onload = function(){return null}
+    
     const [emailError, setEmailError] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');

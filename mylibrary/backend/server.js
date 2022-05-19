@@ -121,6 +121,8 @@ app.post('/changePassword',async(req,res)=>{
     }else{
       res.json({msg:"password changed"})
     }
+  }else{
+    res.json({msg:"enter correct password"})
   }
 })
 
@@ -290,7 +292,7 @@ app.get('/getAllStudent', async(req,res)=>{
   res.json({users:arr.length})
 })
 app.get('/getAllBooks', async(req,res)=>{
-  const arr =await registerbooks.find({isblocked:false},{bookname:0,author:0,_id:0,__v:0,isblocked:0})
+  const arr = await registerbooks.find({isblocked:false},{bookname:0,author:0,_id:0,__v:0,isblocked:0})
   res.json({books:arr.length})
 })
  
@@ -321,7 +323,7 @@ app.post('/forgetpassword',async(req,res)=>{
   }
 })
 
-
+ 
 
 
 
@@ -400,6 +402,21 @@ app.post('/returnbook',async(req,res)=>{
 
     console.log( email,bookid,issueDate,fine , returndate)
 },[])
+
+
+app.get('/getFinedetails/:email',async(req,res)=>{
+  const {email} = req.params
+    // console.log(email)
+    const x = await Borrowedbook.find({email:email,isblocked:false})
+    // var totalfine =''
+    if(!x){
+      // res.json({details:x})
+      console.log("zero")
+    }else{
+      res.json({details:x})
+      console.log("totalfine")
+    }
+})
 
 
 
