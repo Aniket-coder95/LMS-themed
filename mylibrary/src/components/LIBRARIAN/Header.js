@@ -1,6 +1,10 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 export default function Header () {
+  function logout(){
+    window.localStorage.clear();
+    window.location.href='/';
+  }
     return (
       <div>
         <nav className="main-header navbar navbar-expand navbar-white navbar-light">
@@ -44,10 +48,11 @@ export default function Header () {
             </li>
             <li className="nav-item">
               <a className="nav-link" data-widget="control-sidebar" data-slide="true"  role="button">
-              <p>
-                <Link to='/'>
-                <i class="fas fa-solid fa-skull-crossbones">Logout</i>
-                </Link>
+              <p >
+                 <button onClick={logout}>
+                 <i class="fas fa-solid fa-skull-crossbones">Logout</i>
+                 </button>
+                
               </p>
               </a>
             </li>

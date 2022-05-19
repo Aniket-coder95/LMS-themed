@@ -92,17 +92,19 @@ app.post("/signin",async(req,res)=> {
         const contact = user.contact;
         const password = user.password;
         console.log("user "+email+" successfully logged-in as "+role);
-        res.json({name:name , role : role, contact:contact , password:password, token:"token"})
-        // jwt.sign({ user }, secretKey, (err, token) => {
-        //   if (err) {
-        //     return res.json({
-        //       msg: "Something went Wrong,Please Try Again",
-        //     });
-        //   }
-        //   else
-        //   {
-        //   }
-        // });
+        
+        
+        jwt.sign({ user }, secretKey, (err, token) => {
+          if (err) {
+            return res.json({
+              msg: "Something went Wrong,Please Try Again",
+            });
+          }
+          else
+          {
+            res.json({name:name , role : role, contact:contact , password:password, token:token})
+          }
+        });
         
       }      
     

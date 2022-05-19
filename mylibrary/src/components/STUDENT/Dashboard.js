@@ -19,6 +19,10 @@ export default function Dashboard() {
   
 
   useEffect(()=>{
+
+    if(!window.localStorage.getItem('accessToken')){
+      window.location.href='/'
+    }
     setEmail(getdata.state[0])
     const obj={email:email}
 
@@ -118,6 +122,9 @@ export default function Dashboard() {
 
   function changePassword(e){
     e.preventDefault();
+    if(!window.localStorage.getItem('accessToken')){
+      window.location.href='/'
+    }
     if(!C_password || !New_password){
       return alert("Enter password")
     }

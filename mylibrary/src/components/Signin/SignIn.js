@@ -12,11 +12,11 @@ import {useNavigate} from 'react-router-dom'
     function preback(){window.history.forward()}
     setTimeout(preback(),0)
     window.onload = function(){return null}
-    
+
     const [emailError, setEmailError] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    // const [token, setToken] = useState('');
+    const [token, setToken] = useState('');
 
     const navigate = useNavigate();
     let role  = '';

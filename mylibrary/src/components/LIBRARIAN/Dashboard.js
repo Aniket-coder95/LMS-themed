@@ -20,6 +20,9 @@ export default function Dashboard () {
   const name = getdata.state[2];
 
   useEffect(()=>{
+    if(!window.localStorage.getItem('accessToken')){
+      window.location.href='/'
+    }
     axios.get('http://localhost:4000/getAllBooks')
     .then(Response=>{
       // alert(Response.data.users)

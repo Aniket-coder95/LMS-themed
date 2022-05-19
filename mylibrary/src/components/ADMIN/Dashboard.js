@@ -18,6 +18,10 @@ export default function Dashboard () {
   // const [email , setEmail] = useState()
 
   useEffect(()=>{
+    if(!window.localStorage.getItem('accessToken')){
+      window.location.href='/'
+    }
+
     axios.get("http://localhost:4000/booklist")
         .then((response) => {
             setArr(response.data.book);
